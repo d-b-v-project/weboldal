@@ -65,3 +65,27 @@ body {
     background-color: #fff;
   }
 }
+
+form{
+  padding: 10px;
+}
+
+.inp_field{
+  background-color: transparent;
+  border: 1;
+  border-radius: 10px;
+  padding-bottom: 3px;
+
+}
+
+.inp_radio{
+  background-color: #333;
+}
+
+.question{
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  width: fit-content;
+  border-radius: 10px;
+}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Ervinizmus - Hivővé válás{% endblock %}
+{% block content %}
+
+
+<form action="/hivove_valas_submit" method="post">
+    <div>
+        <label >
+            <input type="text" name="name" placeholder="Név" class="inp_field"><br>
+            <input type="email" name="email" id="" placeholder="név@szerver.com" class="inp_field"><br>
+            <input type="password" name="password" placeholder="Jelszó" id="" class="inp_field">
+        </label><br><br>
+        
+    </div>
+    <div class="question">
+        <label for="">Operációs rendszer: </label><br>
+        <label>
+            <input type="radio" name="os" value="windows" class="inp_radio"> windows
+        </label><br>
+        <label>
+            <input type="radio" name="os" value="linux" class="inp_radio"> linux
+        </label><br>
+        <label>
+            <input type="radio" name="os" value="mac" class="inp_radio"> mac
+        </label><br>
+    </div><br>
+    <div class="question">
+        <label for="">Osztály: </label><br>
+        <label>
+            <input type="radio" name="class" value="windows" class="inp_radio"> 9
+        </label><br>
+        <label>
+            <input type="radio" name="class" value="linux" class="inp_radio"> 10
+        </label><br>
+        <label>
+            <input type="radio" name="class" value="mac" class="inp_radio"> 11
+        </label><br>
+        <label>
+            <input type="radio" name="class" value="mac" class="inp_radio"> 12
+        </label><br>
+        <label>
+            <input type="radio" name="class" value="mac" class="inp_radio"> 13
+        </label><br>
+        <label>
+            <input type="radio" name="class" value="mac" class="inp_radio"> Nem adom meg!
+        </label><br>
+    </div>
+    <button type="submit">Submit</button>
+</form>
+
+<!--
+    Ide írd a kódot.
+    Olyan mintha egy body tag-be lenne.
+-->
+
+{% endblock %}

@@ -1,7 +1,13 @@
-from flask import Flask, redirect, render_template, url_for
+from flask import Flask, redirect, render_template, url_for, request
 import sqlite3
 
+SECRET_KEY = 'development'
+
 app = Flask(__name__)
+
+
+
+
 
 
 
@@ -20,6 +26,23 @@ def teremtes_tortenet():
 @app.route("/zarandokhely")
 def zarandokhely():
     return render_template("zarandokhely.html")
+
+
+#================HÍVŐVÉ VÁLÁS====================
+@app.route("/hivovevalas")
+def hivovevalas():
+    return render_template("hivove_valas_lap.html")
+
+@app.route("/hivove_valas_submit", methods=["POST"])
+def hivove_valas_submit():
+    option = request.form.get('choice')
+    name_in_html = request.form["name"]
+    email_in_html = request.form["email"]
+    password_in_html = request.form["password"]
+    print(option)
+    return redirect(url_for("hivovevalas"))
+
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
