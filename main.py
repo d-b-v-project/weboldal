@@ -35,7 +35,7 @@ def hivovevalas():
 
 @app.route("/hivove_valas_submit", methods=["POST"])
 def hivove_valas_submit():
-    option = request.form.get('choice')
+    option = request.form['class']
     name_in_html = request.form["name"]
     email_in_html = request.form["email"]
     password_in_html = request.form["password"]
