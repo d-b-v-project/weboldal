@@ -1,13 +1,11 @@
 from flask import Flask, redirect, render_template, url_for, request
 import sqlite3
+import psycopg2
+
 
 SECRET_KEY = 'development'
 
 app = Flask(__name__)
-
-
-
-
 
 
 
