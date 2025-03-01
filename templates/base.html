@@ -13,11 +13,11 @@
 -->
 <body>
     <div class="topnav" id="myTopnav">
-        <a href="/" class="active">Főoldal</a>
-        <a href="/szentiras">Szentírás</a>
-        <a href="/teremtestortenet">Teremtéstörténet</a>
-        <a href="/zarandokhely">Zarándokhely</a>
-        <a href="/hivovevalas">Hívő leszek</a>
+        <a href="/" {% block index_a%} class="deactive" {% endblock %}>Főoldal</a>
+        <a href="/szentiras" {% block szentiras_a%} class="deactive" {% endblock %}>Szentírás</a>
+        <a href="/teremtestortenet" {% block teremtestortenet_a%} class="deactive" {% endblock %}>Teremtéstörténet</a>
+        <a href="/zarandokhely" {% block zarandokhely_a%} class="deactive" {% endblock %}>Zarándokhely</a>
+        <a href="/hivovevalas" {% block hivovevalas_a%} class="deactive" {% endblock %}>Hívő leszek</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
           <i class="fa fa-bars"></i>
           <p class="navbar_line"></p>
