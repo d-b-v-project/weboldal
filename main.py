@@ -4,7 +4,7 @@ import psycopg2
 try:
     from key import db_name, user_name, pass_word, host
 except:
-    print("Csinálj a "key.py"  file-ba "db_name", "user_name","pass_word", "host", "port" változót a megfelelő értékekkel")
+    print('Csinálj a "key.py"  file-ba "db_name", "user_name","pass_word", "host", "port" változót a megfelelő értékekkel')
     exit()
 
 
