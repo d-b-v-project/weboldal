@@ -1,12 +1,21 @@
 from flask import Flask, redirect, render_template, url_for, request
 import sqlite3
 import psycopg2
+from key import db_name, user_name, pass_word, host
 
 
 SECRET_KEY = 'development'
 
 app = Flask(__name__)
 
+def init_db():
+    conn = psycopg2.connect(
+                    database=db_name,
+                    host=host,
+                    user=user_name,
+                    password=pass_word,
+                    port=5433)
+    return conn
 
 
 @app.route("/")
@@ -19,7 +28,17 @@ def szentiras():
 
 @app.route("/teremtestortenet")
 def teremtes_tortenet():
-    return render_template("teremtes.html")
+    con = init_db()
+    cur = con.cursor()
+    
+    cur.execute("SELECT teremtes FROM public.szovegek;")
+    teremtes_tortenet_szoveg = cur.fetchall()[0][0]
+    teremtes_tortenet_sorok = str(teremtes_tortenet_szoveg).split("\n")
+
+    
+    
+    
+    return render_template("teremtes.html", teremtes_tortenet_sorok=teremtes_tortenet_sorok)
 
 @app.route("/zarandokhely")
 def zarandokhely():
