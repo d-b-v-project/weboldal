@@ -1,7 +1,11 @@
 from flask import Flask, redirect, render_template, url_for, request
 import sqlite3
 import psycopg2
-from key import db_name, user_name, pass_word, host
+try:
+    from key import db_name, user_name, pass_word, host
+except:
+    print("Csinálj a "key.py"  file-ba "db_name", "user_name","pass_word", "host", "port" változót a megfelelő értékekkel")
+    exit()
 
 
 SECRET_KEY = 'development'
