@@ -75,7 +75,18 @@ form{
   border: 1;
   border-radius: 10px;
   padding-bottom: 3px;
+  width: 90%;
+  height: 20px;
+  justify-content: center;
+  border: 1px whitesmoke solid;
+  
 
+}
+
+.inp_div{
+  justify-content: center;
+  text-align: center;
+  align-items: center;
 }
 
 .inp_radio{
@@ -86,7 +97,7 @@ form{
   background-color: #333;
   color: white;
   padding: 10px;
-  width: fit-content;
+  /*width: fit-content;*/
   border-radius: 10px;
 }
 
@@ -94,3 +105,29 @@ form{
   text-align: center;
 }
 
+.minden {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  background-color: #d1a40e4d;
+  box-shadow: 10px 10px 5px gray;
+  border: solid 5px wheat;
+  margin-top: 10px;
+}
+
+.al_minden {
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  background-color: #d1a40e4d;
+  transition: box-shadow 0.1s ease-in-out;
+  margin-top: 10px;
+  color: black;
+
+  &:hover{
+    transition: box-shadow 0.1s ease-in-out;
+    box-shadow: 10px 10px 5px gray;
+  }
+}
