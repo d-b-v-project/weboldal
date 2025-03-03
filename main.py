@@ -1,6 +1,8 @@
-from flask import Flask, redirect, render_template, url_for, request
+from flask import Flask, redirect, render_template, url_for, request, blueprints
 import sqlite3
 import psycopg2
+from templates.admin.admin import admin_pg
+
 try:
     from key import db_name, user_name, pass_word, host
 except:
@@ -11,6 +13,8 @@ except:
 SECRET_KEY = 'development'
 
 app = Flask(__name__)
+app.register_blueprint(admin_pg, url_prefix="/admin")
+
 
 def init_db():
     conn = psycopg2.connect(
