@@ -13,6 +13,7 @@ except:
 SECRET_KEY = 'development'
 
 app = Flask(__name__)
+app.secret_key = SECRET_KEY
 app.register_blueprint(admin_pg, url_prefix="/admin")
 
 
