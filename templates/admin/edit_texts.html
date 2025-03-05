@@ -4,7 +4,10 @@
 
 {% block content %}
 
-<h1>Bejelentkezett!</h1>
+<form action="/admin/edit_teremtes" method="post">
+    <textarea type="text" name="teremtes">{{ teremtes[0][0] }}</textarea>
+    <button>szerkesztése</button>
+</form>
 <a href="/admin/log_out">Kijelentkezés</a>
 
 {% endblock %}
