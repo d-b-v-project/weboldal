@@ -31,9 +31,9 @@ def init_db():
 def index():
     return render_template("index.html")
 
-@app.route("/szentiras")
+@app.route("/imatkozas")
 def szentiras():
-    return render_template("szentiras.html")
+    return render_template("imatkozas.html")
 
 @app.route("/teremtestortenet")
 def teremtes_tortenet():
