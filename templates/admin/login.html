@@ -2,10 +2,11 @@
 {% block title %}Ervinizmus - Bejelentkezés{% endblock %}
 {% block hivovevalas_a%}{% endblock %}
 {% block style %} <link rel="stylesheet" href="../../static/login.css"> {% endblock %}
+{% block bejelentkezes_a %} class="active"{% endblock %}
 <link rel="stylesheet" href="../../static/style.css">
 {% block content %}
 
-    
+ <div class="kozep">
 <form method="post" action="/admin/login">
     <div class="login">
         
@@ -15,10 +16,11 @@
         <button type="submit">Bejelentkezés</button>
         <br>
         <br>
-        <a href="/">Vissza</a>
+        <button onclick="location.href='/'" type="button">Vissza</button>
             
     </div>
 </form>
+</div>
 {% with messages = get_flashed_messages(with_categories=true) %}
 {% if messages %}
     <div>

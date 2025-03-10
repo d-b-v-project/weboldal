@@ -43,7 +43,6 @@ def login():
     
     cur.execute(f"SELECT name, password FROM public.login WHERE name = '{username_in_html}'")
     login_in_db = cur.fetchall()
-    print(login_in_db[0][1])
     
     if len(login_in_db) == 0:
         flash("Helytelen felhasználónév vagy jelszó.", "error")  

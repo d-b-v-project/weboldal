@@ -1,4 +1,9 @@
-
+:root{
+  --bgcolor:rgb(77, 77, 77)
+}
+html{
+  background-color: var(--bgcolor);
+}
 
 .logout{
     color: black;
@@ -84,9 +89,17 @@ small{
     height: 300px;
     border-radius: 100px;
     border: 4px black;
-    background-color: rgb(77, 77, 77);
+    background-color: var(--bgcolor);
     border: 1px solid black;
     border-radius: 5px;
+}
+
+.kozep{
+  position: absolute;
+  left: 50%; 
+  top: 45%; 
+  transform: translate(-50%, -50%); 
+
 }
 
 .admin_peopleadd_div{
