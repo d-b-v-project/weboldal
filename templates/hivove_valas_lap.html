@@ -3,8 +3,16 @@
 {% block hivovevalas_a%}class="active"{% endblock %}
 {% block content %}
 
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script>
+    function onSubmit(token) {
+      document.getElementById("kuldes").submit();
+    }
+</script>
+
+
 <div class="minden">
-    <form action="/hivove_valas_submit" method="post">
+    <form action="/hivove_valas_submit" method="post" id="kuldes">
         <div class="al_minden inp_div">
             <label >
                 <input type="text" name="name" placeholder="Név" class="inp_field"><br>
@@ -28,26 +36,39 @@
         <div class="question al_minden">
             <label for="">Osztály: </label><br>
             <label>
-                <input type="radio" name="class" value="windows" class="inp_radio"> 9
+                <input type="radio" name="class" value="9" class="inp_radio"> 9
             </label><br>
             <label>
-                <input type="radio" name="class" value="linux" class="inp_radio"> 10
+                <input type="radio" name="class" value="10" class="inp_radio"> 10
             </label><br>
             <label>
-                <input type="radio" name="class" value="mac" class="inp_radio"> 11
+                <input type="radio" name="class" value="11" class="inp_radio"> 11
             </label><br>
             <label>
-                <input type="radio" name="class" value="mac" class="inp_radio"> 12
+                <input type="radio" name="class" value="12" class="inp_radio"> 12
             </label><br>
             <label>
-                <input type="radio" name="class" value="mac" class="inp_radio"> 13
+                <input type="radio" name="class" value="13" class="inp_radio"> 13
             </label><br>
             <label>
-                <input type="radio" name="class" value="mac" class="inp_radio"> Nem adom meg!
+                <input type="radio" name="class" value="0" class="inp_radio"> Nem adom meg!
             </label><br>
         </div>
-        <button type="submit">Submit</button>
+        <button class="g-recaptcha" 
+            data-sitekey="{{ site_key }}" 
+            data-callback='onSubmit' 
+            data-action='submit'
+            type="submit">Ellenőrzés</button>
     </form>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div>
+            {% for category, message in messages %}
+                <p class="{{ category }}">{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
 </div>
 <!--
     Ide írd a kódot.

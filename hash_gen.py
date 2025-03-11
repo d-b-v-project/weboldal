@@ -1,6 +1,5 @@
 import hashlib
-
-a = hashlib.sha256("test".encode("UTF-8")).hexdigest()
-
-print(a)
+def convert(text):
+    a = hashlib.sha256(text.encode("UTF-8")).hexdigest()
+    return a
 

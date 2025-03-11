@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Ervinizmus - email megerősítés{% endblock %}
+{% block content %}
+<h1>E-mail elküldve!</h1>
+<form action="/email_verification" method="post">
+    <label for="">Írd be a kódot amit a megadott E-mail címre küldtük.</label><br>
+    <input type="text" placeholder="kód" id="" name="code_html">
+    <input type="submit" name="" id="">
+</form>
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+    <div>
+        {% for category, message in messages %}
+            <p class="{{ category }}">{{ message }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
+{% endwith %}
+{% endblock %}
