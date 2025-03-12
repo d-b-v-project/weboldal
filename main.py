@@ -71,16 +71,31 @@ def generate_short_code(length=6):
 
 # Főoldal
 @app.route('/short_link', methods=['POST', 'GET'])
-def home():
+def short_link():
     init_sqlie()
     if request.method == 'POST':
         full_url = request.form['url']
         short_url = request.form['short_url']
+        
+        with sqlite3.connect(DB_FILE) as conn:
+            cursor = conn.cursor()
+            cursor.execute(f"SELECT short, full FROM urls WHERE short='{short_url}'")
+            a = cursor.fetchall()
+            if len(a) != 0:
+                flash(f"Ez a rövidítés használva van már ehhez az url-hez: {a[0][1]}")
+                return redirect(url_for("short_link"))
+        
+        if len(short_url) > 16:
+            flash("Maximális hossza a rövid url-nek 16 karakter")
+            return redirect(url_for("short_link"))
+        elif short_url == "":
+            flash("Maximális hossza a rövid url-nek 16 karakter")
+            return redirect(url_for("short_link"))
         short_code = short_url
         
         with sqlite3.connect(DB_FILE) as conn:
             cursor = conn.cursor()
-            cursor.execute("INSERT INTO urls (short, full) VALUES (?, ?)", (short_code, full_url))
+            cursor.execute(f"INSERT INTO urls (short, full) VALUES ('{short_code}', '{full_url}')")
             conn.commit()
         
         short_url = request.host_url + short_code

@@ -8,17 +8,28 @@
         body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
         input, button { padding: 10px; font-size: 16px; }
     </style>
+    
 </head>
 <body>
     <h1>Egyszerű Link Rövidítő</h1>
-    <form method="POST">
+    <form  action="/short_link" method="POST">
         <input type="url" name="url" placeholder="Illeszd be az URL-t" required>
-        <input type="" name="short_url" placeholder="Illeszd be a rövidített URL-t" required>
-        <button type="submit">Rövidítés</button>
+        <input type="" name="short_url" id="short_url" placeholder="Illeszd be a rövidített URL-t" required>
+        <button type="submit" onclick="short_it()">Rövidítés</button>
     </form>
     
     {% if short_url %}
         <p><strong>Rövidített URL:</strong> <a href="{{ short_url }}" target="_blank">{{ short_url }}</a></p>
     {% endif %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div>
+            {% for category, message in messages %}
+                <p class="{{ category }}">{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
 </body>
 </html>
+
