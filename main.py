@@ -86,7 +86,7 @@ def hivove_valas_submit():
         email_in_html = request.form["email"]
         password_in_html = request.form["password"]
     except:
-        flash("Mindent tölts ki!")
+        flash("Minden mezőt tölts ki!")
         return redirect(url_for("hivovevalas"))
     
     cur.execute("SELECT name, email FROM public.hivok")
@@ -150,7 +150,7 @@ def email_verification():
     minden = cur.fetchall()
     
     
-    cur.execute(f"SELECT name, email_code FROM public.pre_hivok WHERE name='{session['pre_hivo']}'")
+    cur.execute(f"SELECT name, email_code FROM public.pre_hivok WHERE name='{session["pre_hivo"]}'")
     code_in_db = cur.fetchall()[0][1]
     
     if code_in_db != code_in_html:

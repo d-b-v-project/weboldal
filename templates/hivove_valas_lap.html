@@ -15,14 +15,14 @@
     <form action="/hivove_valas_submit" method="post" id="kuldes">
         <div class="al_minden inp_div">
             <label >
-                <input type="text" name="name" placeholder="Név" class="inp_field"><br>
-                <input type="email" name="email" id="" placeholder="név@szerver.com" class="inp_field"><br>
+                <input type="text" name="name" placeholder="Felhasználónév" class="inp_field"><br>
+                <input type="email" name="email" id="" placeholder="Email cím" class="inp_field"><br>
                 <input type="password" name="password" placeholder="Jelszó" id="" class="inp_field">
             </label><br><br>
             
         </div>
         <div class="question al_minden">
-            <label for="">Operációs rendszer: </label><br>
+            <label for="">Válaszd ki hogy milyen operációs renszert használsz: </label><br>
             <label>
                 <input type="radio" name="os" value="windows" class="inp_radio"> windows
             </label><br>
@@ -34,7 +34,7 @@
             </label><br>
         </div><br>
         <div class="question al_minden">
-            <label for="">Osztály: </label><br>
+            <label for="">Osztályod:</label><br>
             <label>
                 <input type="radio" name="class" value="9" class="inp_radio"> 9
             </label><br>
@@ -58,7 +58,7 @@
             data-sitekey="{{ site_key }}" 
             data-callback='onSubmit' 
             data-action='submit'
-            type="submit">Ellenőrzés</button>
+            type="submit">Regisztráció</button>
     </form>
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}

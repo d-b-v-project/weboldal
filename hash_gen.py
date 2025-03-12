@@ -1,5 +1,6 @@
 import hashlib
-def convert(text):
-    a = hashlib.sha256(text.encode("UTF-8")).hexdigest()
+
+def convert(szoveg):
+    a = hashlib.sha256(szoveg.encode("UTF-8")).hexdigest()
     return a
 
