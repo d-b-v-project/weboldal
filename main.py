@@ -274,5 +274,11 @@ def email_verification():
     
     return redirect(url_for("index"))
 
+
+@app.route("/elerhetosegek")
+def elerhetosegek():
+    return render_template("elerhetosegek.html")
+
+
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

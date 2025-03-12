@@ -1,140 +1,52 @@
-<!DOCTYPE html>
-<html lang="hu">
+{% extends 'base.html' %}
+{% block title %}Ervinizmus - Linkshorter{% endblock %}
+{% block linkshorter_a%}class="active"{% endblock %}
+{% block content %}
+
 <head>
     <meta charset="UTF-8">
     <link rel="icon" type="image/x-icon" href="static/Images/webicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Link Rövidítő</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
-        input, button { padding: 10px; font-size: 16px; }
+        .body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        input,
+        button {
+            padding: 10px;
+            font-size: 16px;
+        }
     </style>
-    
+
 </head>
+
 <body>
+    <div class="body">
     <h1>Egyszerű Link Rövidítő</h1>
-    <form  action="/short_link" method="POST">
+    <form action="/short_link" method="POST">
         <input type="url" name="url" placeholder="Illeszd be az URL-t" required>
         <input type="" name="short_url" id="short_url" placeholder="Rövidített név" required>
         <button type="submit" onclick="short_it()">Rövidítés</button>
     </form>
-    
+
     {% if short_url %}
-        <p>
-            <strong>Rövidített URL:</strong>
-            <a href="{{ short_url }}" target="_blank" class="link" id="link">{{ short_url }}</a>
-            <div class="btns">
-                <center>
-                    <button class="element-button" style="vertical-align:middle" onclick="element()">Nagyítás</button>
-                    <button class="element-button-del" style="vertical-align:middle" onclick="element_del()">Kicsinyítés</button>
-                </center>
-            </div>
-            
-        </p>
+    <p><strong>Rövidített URL:</strong> <a href="{{ short_url }}" target="_blank">{{ short_url }}</a></p>
     {% endif %}
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
-        <div>
-            {% for category, message in messages %}
-                <p class="{{ category }}">{{ message }}</p>
-            {% endfor %}
-        </div>
+    <div>
+        {% for category, message in messages %}
+        <p class="{{ category }}">{{ message }}</p>
+        {% endfor %}
+    </div>
     {% endif %}
     {% endwith %}
     <br>
-    
-    <button onclick="window.location.href='/';">Főoldal</button>
+    <button onclick="window.location.href='https:ervinizmus.eu';">Főoldal</button>
+    </div>
 </body>
-</html>
 
-
-<style>
-
-    .element-button {
-        display: flex;
-    }
-      
-    .element-button span {
-        cursor: pointer;
-
-        transition: 0.5s;
-        text-align: center;
-    }
-     
-    .element-button span:after {
-        content: '\00bb';
-        position: absolute;
-        opacity: 0;
-        top: 0;
-        right: -20px;
-        transition: 0.5s;
-    }
-      
-    .element-button:hover span {
-        padding-right: 25px;
-    }
-      
-    .element-button:hover span:after {
-        opacity: 1;
-        right: 0;
-    }
-    
-    
-    
-    .element-button-del {
-        display: none;
-    }
-      
-    .element-button-del span {
-        cursor: pointer;
-        display: inline-block;
-        position: relative;
-        transition: 0.5s;
-        text-align: center;
-    }
-      
-    .element-button-del span:after {
-        content: '\00bb';
-        position: absolute;
-        opacity: 0;
-        top: 0;
-        right: -20px;
-        transition: 0.5s;
-    }
-      
-    .element-button-del:hover span {
-        padding-right: 25px;
-    }
-      
-    .element-button-del:hover span:after {
-        opacity: 1;
-        right: 0;
-    }
-    .element-button.active{
-        display: none;
-    }
-    .element-button-del.active{
-        display: flex;
-    }
-</style>
-
-<script>
-    function element(){
-        const element_btn = document.getElementsByClassName('element-button')[0]
-        const element_btn_del = document.getElementsByClassName('element-button-del')[0]
-        element_btn.classList.toggle('active')
-        element_btn_del.classList.toggle('active')
-        var text = document.getElementById("link")
-        text.style.fontSize = '100px'
-    }
-    
-    function element_del(){
-        const element_btn = document.getElementsByClassName('element-button')[0]
-        const element_btn_del = document.getElementsByClassName('element-button-del')[0]
-        element_btn.classList.toggle('active')
-        element_btn_del.classList.toggle('active')
-        var text = document.getElementById("link")
-        text.style.fontSize = '20px'
-    }
-</script>
-
+{% endblock %}
