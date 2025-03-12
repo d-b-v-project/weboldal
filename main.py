@@ -3,6 +3,7 @@ from flask_mail import Message, Mail
 import sqlite3
 import psycopg2
 from templates.admin.admin import admin_pg
+from templates.hivo.hivo import hivo
 import hash_gen
 import random
 import smtplib
@@ -21,6 +22,7 @@ SECRET_KEY = 'development'
 app = Flask(__name__)
 app.secret_key = SECRET_KEY
 app.register_blueprint(admin_pg, url_prefix="/admin")
+app.register_blueprint(hivo, url_prefix="/hivo")
 
 app.config['MAIL_SERVER'] = key.mail_server
 app.config['MAIL_PORT'] = key.mail_port
@@ -110,7 +112,7 @@ def hivove_valas_submit():
     message = Message(
         subject="E-mail ellenőrzés",
         recipients=[email_in_html],
-        sender=("dani az oregpreshaztól", "dani@oregpreshaz.eu")
+        sender=("Olyan ügyes és okos vagyok", "dani@oregpreshaz.eu")
     )
     message.body = f"Ellenőrző kód: {verification_code}"
     mail.send(message)
