@@ -9,6 +9,8 @@ import random
 import smtplib
 import key
 import requests
+from datetime import datetime
+import string
 
 try:
     from key import db_name, user_name, pass_word, host
@@ -31,7 +33,7 @@ app.config['MAIL_PORT'] = key.mail_port
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = False
 
-
+DB_FILE = "db/database.db"
 
 def init_db():
     conn = psycopg2.connect(
@@ -42,10 +44,66 @@ def init_db():
                     port=5433)
     return conn
 
+def init_sqlie():
+    with sqlite3.connect(DB_FILE) as conn:
+        cursor = conn.cursor()
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS urls (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                short TEXT UNIQUE,
+                full TEXT
+            )
+        """)
+        conn.commit()
+
 
 @app.route("/")
 def index():
     return render_template("index.html")
+
+
+
+
+# Rövid kód generálása
+def generate_short_code(length=6):
+    chars = string.ascii_letters + string.digits
+    return ''.join(random.choice(chars) for _ in range(length))
+
+# Főoldal
+@app.route('/short_link', methods=['POST', 'GET'])
+def home():
+    init_sqlie()
+    if request.method == 'POST':
+        full_url = request.form['url']
+        short_url = request.form['short_url']
+        short_code = short_url
+        
+        with sqlite3.connect(DB_FILE) as conn:
+            cursor = conn.cursor()
+            cursor.execute("INSERT INTO urls (short, full) VALUES (?, ?)", (short_code, full_url))
+            conn.commit()
+        
+        short_url = request.host_url + short_code
+        return render_template('linkshort.html', short_url=short_url)
+    
+    return render_template('linkshort.html')
+
+# Átirányítás rövid URL alapján
+@app.route('/<short_code>')
+def redirect_url(short_code):
+    with sqlite3.connect(DB_FILE) as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT full FROM urls WHERE short = ?", (short_code,))
+        result = cursor.fetchone()
+        
+        if result:
+            return redirect(result[0])
+        else:
+            return "URL not found", 404
+
+
+
+
 
 @app.route("/imatkozas")
 def szentiras():
@@ -74,11 +132,12 @@ def zarandokhely():
 @app.route("/hivovevalas")
 def hivovevalas():
     return render_template("hivove_valas_lap.html", site_key=key.site_key)
-
+old_minute = int()
 
 mail = Mail(app)
 @app.route("/hivove_valas_submit", methods=["POST"])
 def hivove_valas_submit():
+    global old_minute
     con = init_db()
     cur = con.cursor()
     try:
@@ -108,19 +167,53 @@ def hivove_valas_submit():
     
     
     verification_code = random.randint(111111, 999999)
+    
+    password_hash = hash_gen.convert(password_in_html)
+    
+    cur.execute("SELECT * FROM pre_hivok")
+    pre_hivo = cur.fetchall()
+    
+    if len(pre_hivo) != 0:
+        flash("Valaki jelenleg próbál bejelentkezni. Kérem várjon")
+        now_minute = int(datetime.now())
+        
+        old_minute = now_minute
+        while True:
+            if now_minute == old_minute+10:
+                cur.execute("DELETE FROM pre_hivok")
+                con.commit()
+                break
+        return redirect(url_for("hivovevalas"))
+        
+    
+    cur.execute(f"INSERT INTO pre_hivok (name, email, password, os, class, email_code) VALUES ('{name_in_html}', '{email_in_html}', '{password_hash}', '{os}', '{osztaly}', '{verification_code}')")
+    con.commit()
+    
+
+    cur.execute(f"SELECT name, email, password, os, class, email_code FROM public.pre_hivok")
+    minden = cur.fetchall()
+    
+    minden = minden[0]
+
 
     message = Message(
         subject="E-mail ellenőrzés",
-        recipients=[email_in_html],
+        recipients=["d-test@oregpreshaz.eu"],
         sender=("Olyan ügyes és okos vagyok", "dani@oregpreshaz.eu")
     )
-    message.body = f"Ellenőrző kód: {verification_code}"
+    message.body = f"""
+    Sikeresen regisztráltál: {minden[0]},
+    {minden[0]} {minden[3]} operációs rendszert használ és
+    {minden[4]}-dik osztályba jár
+    
+    # Ellenőrző kód: {verification_code}
+    
+    
+    """
     mail.send(message)
     
     
-    password_hash = hash_gen.convert(password_in_html)
-    cur.execute(f"INSERT INTO pre_hivok (name, email, password, os, class, email_code) VALUES ('{name_in_html}', '{email_in_html}', '{password_hash}', '{os}', '{osztaly}', '{verification_code}')")
-    con.commit()
+    
     
     
     secret_response = request.form["g-recaptcha-response"]

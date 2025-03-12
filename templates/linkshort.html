@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Rövidítő</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        input, button { padding: 10px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h1>Egyszerű Link Rövidítő</h1>
+    <form method="POST">
+        <input type="url" name="url" placeholder="Illeszd be az URL-t" required>
+        <input type="" name="short_url" placeholder="Illeszd be a rövidített URL-t" required>
+        <button type="submit">Rövidítés</button>
+    </form>
+    
+    {% if short_url %}
+        <p><strong>Rövidített URL:</strong> <a href="{{ short_url }}" target="_blank">{{ short_url }}</a></p>
+    {% endif %}
+</body>
+</html>
