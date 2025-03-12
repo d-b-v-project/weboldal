@@ -83,14 +83,14 @@ def short_link():
             a = cursor.fetchall()
             if len(a) != 0:
                 flash(f"Ez a rövidítés használva van már!")
-                return redirect(url_for("linkshorter"))
+                return redirect(url_for("short_link"))
         
         if len(short_url) > 16:
             flash("Maximális hossza a rövid url-nek 16 karakter")
-            return redirect(url_for("linkshorter"))
+            return redirect(url_for("short_link"))
         elif short_url == "":
             flash("Maximális hossza a rövid url-nek 16 karakter")
-            return redirect(url_for("linkshorter"))
+            return redirect(url_for("short_link"))
         short_code = short_url
         
         with sqlite3.connect(DB_FILE) as conn:
