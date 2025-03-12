@@ -2,6 +2,7 @@
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="static/Images/webicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Link Rövidítő</title>
     <style>
@@ -14,12 +15,12 @@
     <h1>Egyszerű Link Rövidítő</h1>
     <form  action="/short_link" method="POST">
         <input type="url" name="url" placeholder="Illeszd be az URL-t" required>
-        <input type="" name="short_url" id="short_url" placeholder="Illeszd be a rövidített URL-t" required>
+        <input type="" name="short_url" id="short_url" placeholder="Rövidített név" required>
         <button type="submit" onclick="short_it()">Rövidítés</button>
     </form>
     
     {% if short_url %}
-        <p><strong>Rövidített URL:</strong> <a href="{{ short_url }}" target="_blank" style="font-size: 100px">{{ short_url }}</a></p>
+        <p><strong>Rövidített URL:</strong> <a href="{{ short_url }}" target="_blank">{{ short_url }}</a></p>
     {% endif %}
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
@@ -30,6 +31,8 @@
         </div>
     {% endif %}
     {% endwith %}
+    <br>
+    <button onclick="window.location.href='https:ervinizmus.eu';">Főoldal</button>
 </body>
 </html>
 
