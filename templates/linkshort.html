@@ -19,7 +19,7 @@
     </form>
     
     {% if short_url %}
-        <p><strong>Rövidített URL:</strong> <a href="{{ short_url }}" target="_blank">{{ short_url }}</a></p>
+        <p><strong>Rövidített URL:</strong> <a href="{{ short_url }}" target="_blank" style="font-size: 100px">{{ short_url }}</a></p>
     {% endif %}
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}

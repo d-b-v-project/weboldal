@@ -82,7 +82,7 @@ def short_link():
             cursor.execute(f"SELECT short, full FROM urls WHERE short='{short_url}'")
             a = cursor.fetchall()
             if len(a) != 0:
-                flash(f"Ez a rövidítés használva van már ehhez az url-hez: {a[0][1]}")
+                flash(f"Ez a rövidítés használva van már!")
                 return redirect(url_for("short_link"))
         
         if len(short_url) > 16:
