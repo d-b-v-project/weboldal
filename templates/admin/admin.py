@@ -89,4 +89,3 @@ def szoveg_szerkesztes():
     cur.execute("SELECT miatyank FROM public.szovegek;")
     miatyank = cur.fetchall()
     return render_template("/admin/edit_texts.html", teremtes=teremtes, miatyank=miatyank, fo_oldal=fo_oldal)
-

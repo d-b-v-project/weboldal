@@ -11,6 +11,7 @@ import key
 import requests
 from datetime import datetime
 import string
+import get_urls
 
 try:
     from key import db_name, user_name, pass_word, host
@@ -73,9 +74,19 @@ def generate_short_code(length=6):
 @app.route('/linkshorter', methods=['POST', 'GET'])
 def short_link():
     init_sqlie()
+    tiltott_url = list(get_urls.open_file("main.py"))
     if request.method == 'POST':
         full_url = request.form['url']
         short_url = request.form['short_url']
+        tiltott_url_str = ""
+        for url in tiltott_url:
+            tiltott_url_str += f"{url}, "
+        for url in tiltott_url:
+            print(f"{short_url} == {url[1:]}")
+            if short_url == url[1:]:
+                flash(f"Ez a rövidítés használva van már! Ezeket a neveket nem használhatod: {tiltott_url_str}")
+                return redirect(url_for("short_link"))
+            
         
         with sqlite3.connect(DB_FILE) as conn:
             cursor = conn.cursor()
@@ -167,6 +178,11 @@ def hivove_valas_submit():
     
     cur.execute("SELECT name, email FROM public.hivok")
     hivo_name_email = cur.fetchall()
+    cur.execute(f"SELECT name, password FROM public.login WHERE name = '{name_in_html}'")
+    login_in_db = cur.fetchall()
+    if len(login_in_db) != 0:
+        flash("Létezik ilyen felhasználónévvel ember!")
+        return redirect(url_for("hivovevalas"))
     
     
     try:
@@ -190,14 +206,6 @@ def hivove_valas_submit():
     
     if len(pre_hivo) != 0:
         flash("Valaki jelenleg próbál bejelentkezni. Kérem várjon")
-        now_minute = int(datetime.now())
-        
-        old_minute = now_minute
-        while True:
-            if now_minute == old_minute+10:
-                cur.execute("DELETE FROM pre_hivok")
-                con.commit()
-                break
         return redirect(url_for("hivovevalas"))
         
     

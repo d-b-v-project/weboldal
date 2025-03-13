@@ -11,6 +11,10 @@
     {% block js %}
     <script src="{{ url_for('static', filename='main.js') }}"></script> {% endblock %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    
+
+
 </head>
 <!--
     EBBE A FILE-BA NE NYÚLJ BELE!   
@@ -24,8 +28,17 @@
         <a href="/zarandokhely" {% block zarandokhely_a%} class="deactive" {% endblock %}>Zarándokhely</a>
         <a href="/hivovevalas" {% block hivovevalas_a%} class="deactive" {% endblock %}>Hívő leszek</a>
         <a href="/linkshorter" {% block linkshorter_a%} class="deactive" {% endblock %}>Linkrövidítő</a>
-        <a href="/admin/login_page" {% block bejelentkezes_a%} class="deactive" {% endblock %}>Login</a>
         <a href="/elerhetosegek" {% block elerhetosegek_a%} class="deactive" {% endblock %}>Elérhetőségek</a>
+        <div class="dropdown">
+            <button class="dropbtn">Bejelentkezés 
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a href="/admin/login_page">Admin</a>
+              <a href="/hivo/login_page">Hívő</a>
+            </div>
+        </div> 
+        
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <i class="fa fa-bars"></i>
             <p class="navbar_line"></p>
