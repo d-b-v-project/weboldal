@@ -2,23 +2,22 @@
 {% block title %}Ervinizmus - Teremtéstörténet{% endblock %}
 {% block teremtestortenet_a %} class="active" {% endblock %}
 {% block style %}
-
-<link rel="stylesheet" href="../static/style.css">{% endblock %}
+<link rel="stylesheet" href="../static/style.css">
+<link rel="stylesheet" href="../static/teremtes.css">{% endblock %}
 {% block content %}
-<html class="teremtes">
-    <div class="minden">
-        <div class="header">
-            <h1 class="ttcim">A Teremtéstörténet</h1>
-        </div>
-        <div class="szoveg">
-            <p class="center">
-        
-                {% for sor in teremtes_tortenet_sorok %}
-                    {{sor}} <br>
-                {% endfor %}
-            
-            </p>
-        </div>
+<div class="doboz">
+    <div class="header">
+        <h1 class="ttcim">A Teremtéstörténet</h1>
     </div>
-</html>
+    <div class="szoveg">
+        <p class="center">
+
+            {% for sor in teremtes_tortenet_sorok %}
+            {{sor}} <br>
+            {% endfor %}
+
+        </p>
+    </div>
+</div>
+
 {% endblock %}

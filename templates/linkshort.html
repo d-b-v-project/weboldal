@@ -2,24 +2,14 @@
 {% block title %}Ervinizmus - Linkshorter{% endblock %}
 {% block linkshorter_a%}class="active"{% endblock %}
 {% block content %}
+{% block style %}
+<link rel="stylesheet" href="../static/style.css">
+<link rel="stylesheet" href="../static/linkshort.css">{% endblock %}
 
 <head>
     <meta charset="UTF-8">
     <link rel="icon" type="image/x-icon" href="static/Images/webicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        .body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-        }
-
-        input,
-        button {
-            padding: 10px;
-            font-size: 16px;
-        }
-    </style>
 
 </head>
 
@@ -53,7 +43,6 @@
     {% endif %}
     {% endwith %}
     <br>
-    <button onclick="window.location.href='/';">Főoldal</button>
     </div>
 </body>
 

@@ -1,0 +1,129 @@
+html{
+    background-color: rgba(244, 241, 222, 0.9);
+}
+.minden {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(244, 241, 222, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.al_minden {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.inp_div label {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.inp_field {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    font-family: 'Georgia', serif;
+}
+
+.inp_field:focus {
+    border-color: #81b29a;
+    outline: none;
+}
+
+.question label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1em;
+    color: #3d405b;
+}
+
+.inp_radio {
+    margin-right: 10px;
+}
+
+
+button {
+    background-color: #81b29a;
+    color: #f4f1de;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #e07a5f;
+}
+
+.flash-message {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+.flash-message.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.flash-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Reszponzív stílusok */
+@media (max-width: 768px) {
+    .minden {
+        margin: 10px;
+        padding: 10px;
+    }
+
+    .inp_field {
+        font-size: 0.9em;
+    }
+
+    .question label {
+        font-size: 0.9em;
+    }
+
+    button {
+        font-size: 0.9em;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .minden {
+        margin: 5px;
+        padding: 5px;
+    }
+
+    .inp_field {
+        font-size: 0.8em;
+    }
+
+    .question label {
+        font-size: 0.8em;
+    }
+
+    button {
+        font-size: 0.8em;
+        padding: 6px 12px;
+    }
+}

@@ -2,6 +2,9 @@
 {% block title %}Ervinizmus - Hivővé válás{% endblock %}
 {% block hivovevalas_a%}class="active"{% endblock %}
 {% block content %}
+{% block style %}
+<link rel="stylesheet" href="../static/style.css">
+<link rel="stylesheet" href="../static/hivoleszek.css">{% endblock %}
 
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <script>
@@ -10,8 +13,8 @@
     }
 </script>
 
-
 <div class="minden">
+    <center><h1>Regisztráció</h1></center>
     <form action="/hivove_valas_submit" method="post" id="kuldes">
         <div class="al_minden inp_div">
             <label >
@@ -74,9 +77,5 @@
     {% endif %}
     {% endwith %}
 </div>
-<!--
-    Ide írd a kódot.
-    Olyan mintha egy body tag-be lenne.
--->
 
 {% endblock %}

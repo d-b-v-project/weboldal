@@ -1,0 +1,18 @@
+.fooldalcim {
+    text-align: center;
+}
+
+.ttcim {
+    text-align: center;
+}
+
+.minden {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    background-color: #d1a40e4d;
+    box-shadow: 10px 10px 5px gray;
+    border: solid 5px wheat;
+    margin-top: 10px;
+}
