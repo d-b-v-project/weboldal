@@ -71,9 +71,8 @@ def index():
     cur.execute("SELECT name FROM hivok")
     hivok = cur.fetchall()
     hivok_szama = int()
-    for i in hivok[0]:
+    for i in hivok:
         hivok_szama += 1
-
     
     return render_template("index.html", fo_oldal_sorok=fo_oldal_sorok, hivok_szama=hivok_szama)
 
@@ -180,14 +179,26 @@ def hivove_valas_submit():
     global old_minute
     con = init_db()
     cur = con.cursor()
+    hozzajarult = False
     try:
         osztaly = int(request.form['class'])
         os = request.form['os']
         name_in_html = request.form["name"]
         email_in_html = request.form["email"]
         password_in_html = request.form["password"]
+        
     except:
         flash("Minden mezőt tölts ki!")
+        return redirect(url_for("hivovevalas"))
+    
+    try:
+        hozzajarulas = request.form["hozzajarulas"]
+        hozzajarult = True
+    except:
+        hozzajarult = False
+    
+    if hozzajarult == False:
+        flash("El kell fogadnon a felhasználási feltételeket!")
         return redirect(url_for("hivovevalas"))
     
     cur.execute("SELECT name, email FROM public.hivok")
@@ -300,6 +311,10 @@ def email_verification():
 @app.route("/elerhetosegek")
 def elerhetosegek():
     return render_template("elerhetosegek.html")
+
+@app.route("/felhasznalasi_feltetelek")
+def felhasznalasi_feltetelek():
+    return render_template("felh_felt.html")
 
 
 if __name__ == "__main__":
