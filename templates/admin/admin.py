@@ -4,6 +4,9 @@ import psycopg2
 from key import *
 from datetime import datetime
 now = datetime.now()
+import sqlite3
+
+DB_FILE = "db/database.db"
 
 
 def init_db():
@@ -71,6 +74,30 @@ def dashboard():
         return redirect(url_for("index"))
     
     return render_template("admin/dashboard.html")
+
+@admin_pg.route("/short_url_page")
+def short_url_page():
+    if "user" not in session:
+        flash("Először jelentkezz be!", "error")
+        return redirect(url_for("index"))
+    with sqlite3.connect(DB_FILE) as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT full, short FROM urls")
+        data = cursor.fetchall()
+    
+    url_header = ["Teljes url", "Rövidített"]
+    
+    
+    return render_template("admin/short_url.html", heading=url_header, data=data)
+
+@admin_pg.route("/del_url/<short>")
+def del_url(short):
+    short_url = short[1:-1]
+    with sqlite3.connect(DB_FILE) as conn:
+        cursor = conn.cursor()
+        cursor.execute(f"DELETE FROM urls WHERE short='{short_url}'")
+        data = cursor.fetchall()
+    return(redirect(url_for("admin.short_url_page")))
 
 @admin_pg.route("/log_out")
 def admin_log_out():

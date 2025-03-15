@@ -116,6 +116,11 @@ border: solid 5px wheat;
 margin-top: 10px;
 }
 
+.teremtes{
+  background-image: url(Images/image.png);
+  background-size: 100%;
+}
+
 .al_minden {
 max-width: 90%;
 margin-left: auto;
