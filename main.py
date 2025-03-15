@@ -88,7 +88,6 @@ def generate_short_code(length=6):
 # Főoldal
 @app.route('/linkshorter', methods=['POST', 'GET'])
 def short_link():
-    init_sqlie()
     tiltott_url = list(get_urls.open_file("main.py"))
     if request.method == 'POST':
         full_url = request.form['url']

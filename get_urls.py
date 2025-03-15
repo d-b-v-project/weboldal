@@ -1,7 +1,7 @@
 def open_file(fname):
     routok = []
     csak_route = []
-    with open(fname) as f:
+    with open(fname, encoding="utf8") as f:
         file = f.readlines()
         for sor in file:
             if "@app.route" in sor:
