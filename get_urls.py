@@ -23,6 +23,7 @@ def open_file(fname):
     
     return csak_route
         
-        
+print(open_file("main.py"))
+
 if __name__ == "__main__":
     open_file("main.py")
