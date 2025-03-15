@@ -60,7 +60,22 @@ def init_sqlie():
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    con = init_db()
+    cur = con.cursor()
+    
+    cur.execute("SELECT fo_oldal FROM public.szovegek")
+    fo_oldal = cur.fetchall()
+    szoveg = fo_oldal[0][0]
+    fo_oldal_sorok = str(szoveg).split("\n")
+    
+    cur.execute("SELECT name FROM hivok")
+    hivok = cur.fetchall()
+    hivok_szama = int()
+    for i in hivok[0]:
+        hivok_szama += 1
+
+    
+    return render_template("index.html", fo_oldal_sorok=fo_oldal_sorok, hivok_szama=hivok_szama)
 
 
 

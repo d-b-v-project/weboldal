@@ -6,4 +6,33 @@
 
 <div class="fooldalcim"><h1>Ervinizmus</h1></div>
 
+{% block style %}
+<link rel="stylesheet" href="../static/style.css">
+{% endblock %}
+
+
+    <div class="minden">
+        <div class="header">
+            <h1 class="ttcim">A Teremtéstörténet</h1>
+        </div>
+        <div class="szoveg">
+            <p class="center">
+        
+                {% for sor in fo_oldal_sorok %}
+                    {{sor}} <br>
+                {% endfor %}
+            
+            </p>
+        </div>
+    </div>
+    <div class="hivok">
+        <div class="szoveg">
+            <p class="center">
+        
+                Hívők: {{ hivok_szama }}
+            
+            </p>
+        </div>
+    </div>
+
 {% endblock %}
