@@ -212,7 +212,7 @@ def hivove_valas_submit():
     
     cur.execute("SELECT name, email FROM public.hivok")
     hivo_name_email = cur.fetchall()
-    cur.execute(f"SELECT name, password FROM public.login WHERE name = '{name_in_html}'")
+    cur.execute(f"SELECT name, password FROM public.hivok WHERE name = '{name_in_html}'")
     login_in_db = cur.fetchall()
     if len(login_in_db) != 0:
         flash("Létezik ilyen felhasználónévvel ember!")
