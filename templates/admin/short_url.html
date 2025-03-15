@@ -4,45 +4,76 @@
 
 {% block content %}
 
-Rövid url-ek:
-<table class="table">
-    <tr class="table__header">
-        {% for header in heading %}
-            <th class="table__cell">{{ header }}</th>
-        {% endfor %}
-    </tr>
-    {% for row in data %}
-    <tr class="table__row">
-        {% for cell in row %}
-            <td class="table__cell">{{ cell }}</td>
-            
-        {% endfor %}
-        <td class="table__cell"><a href="/admin/del_url/'{{ row[1] }}'" style="color: red;">Törlés</a></td>
-    </tr>
-    
-    {% endfor%}
-</table>
+<h1>Rövid url-ek:</h1>
+<div class="table-responsive">
+    <table class="table custom-table">
+        <thead class="table-header">
+            <tr>
+                {% for header in heading %}
+                    <th>{{ header }}</th>
+                {% endfor %}
+                <th>Műveletek</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+                <tr>
+                    {% for cell in row %}
+                        <td>{{ cell }}</td>
+                    {% endfor %}
+                    <td>
+                        <a href="/admin/del_url/'{{ row.1 }}'" class="btn btn-danger btn-sm delete-button" onclick="return confirm('Biztosan törölni szeretnéd?');">Törlés</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
 <style>
-    .table__row:nth-child(even){
-        background-color: white;
-        font-size: larger;
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
     }
-    
-    .table__row{
-        font-size: larger;
+
+    .table-header {
+        background-color: #3498db;
+        color: white;
     }
-    
-    .table{
-        background-color: rgb(189, 255, 244);
-        border: 1px solid black;
-    }
-    
-    .table__header{
+
+    .custom-table th, .custom-table td {
+        padding: 12px 15px;
         text-align: left;
+        border-bottom: 1px solid #ddd;
     }
-    .table__cell{
-        padding: 8px;
-        border: 1px solid black;
+
+    .custom-table tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .custom-table tbody tr:hover {
+        background-color: #e0f2f7;
+    }
+
+    .delete-button {
+        background-color: #e74c3c;
+        border: none;
+        color: white;
+        padding: 8px 12px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        border-radius: 5px;
+        transition: 0.3s;
+    }
+
+    .delete-button:hover {
+        background-color: #c0392b;
     }
 </style>
 
