@@ -20,6 +20,7 @@ def open_file(fname):
         csak_route.append(i)
     
     
+    
     return csak_route
         
         
