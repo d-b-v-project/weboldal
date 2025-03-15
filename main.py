@@ -180,6 +180,10 @@ def hivove_valas_submit():
     con = init_db()
     cur = con.cursor()
     hozzajarult = False
+    
+    tiltott_nevek = ["ADOLF HITLER", "HITLER", "ENGLERT", "ERVIN"]
+    
+    
     try:
         osztaly = int(request.form['class'])
         os = request.form['os']
@@ -190,6 +194,11 @@ def hivove_valas_submit():
     except:
         flash("Minden mezőt tölts ki!")
         return redirect(url_for("hivovevalas"))
+    
+    for tiltott_nev in tiltott_nevek:
+        if tiltott_nev in name_in_html:
+            flash("Ez a felhasználónév le van tiltva!")
+            return redirect(url_for("hivovevalas"))
     
     try:
         hozzajarulas = request.form["hozzajarulas"]
