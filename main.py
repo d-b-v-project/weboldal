@@ -36,14 +36,14 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = False
 
 DB_FILE = "db/database.db"
-
 def init_db():
     conn = psycopg2.connect(
                     database=db_name,
                     host=host,
                     user=user_name,
                     password=pass_word,
-                    port=5433)
+                    port=key.port)
+    
     return conn
 
 def init_sqlie():
