@@ -72,8 +72,11 @@ def dashboard():
     if "user" not in session:
         flash("Először jelentkezz be!", "error")
         return redirect(url_for("index"))
-    
-    return render_template("admin/dashboard.html")
+    con = init_db()
+    cur = con.cursor()
+    cur.execute(f"SELECT in_one FROM messages")
+    in_one = cur.fetchall()
+    return render_template("admin/dashboard.html", in_one=in_one)
 
 @admin_pg.route("/short_url_page")
 def short_url_page():

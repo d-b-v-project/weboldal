@@ -3,10 +3,26 @@
 {% block szentiras_a%}class="active"{% endblock %}
 {% block content %}
 
+{% block style %}
+<link rel="stylesheet" href="../static/style.css">
+<link rel="stylesheet" href="../static/imatkozas.css">{% endblock %}
+<div class="doboz">
+    <div class="header">
+        <h1 class="ttcim">Imátkozás</h1>
+    </div>
+    <div class="szoveg">
+        <p class="center">
 
-<!--
-    Ide írd a kódot.
-    Olyan mintha egy body tag-be lenne.
--->
+            {% for resz in minden[0] %}
+                <div class="box">
+                    {{ resz }}
+                    <br>
+                    <br>
+                </div>
+                
+            {% endfor %}
 
+        </p>
+    </div>
+</div>
 {% endblock %}

@@ -11,6 +11,10 @@
 {% endblock %}
 
 
+<audio autoplay controls id="music">
+    <source src="{{ url_for('static', filename='ervinizmus.mp3') }}" type="audio/mpeg">
+</audio>
+
     <div class="minden">
         <div class="header">
             <h1 class="ttcim">A Teremtéstörténet</h1>
@@ -34,5 +38,19 @@
             </p>
         </div>
     </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script>
+    function PlayMusic() {
+    
+      var play=document.getElementById("music");
+      play.play();
+    }
+    
+    $(document).ready(function(){
+      setTimeout(PlayMusic,3000);
+    })
+        
+</script>
 
 {% endblock %}

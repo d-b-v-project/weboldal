@@ -146,7 +146,13 @@ def redirect_url(short_code):
 
 @app.route("/imatkozas")
 def szentiras():
-    return render_template("imatkozas.html")
+    con = init_db()
+    cur = con.cursor()
+    
+    cur.execute("SELECT miatyank FROM public.szovegek")
+    minden = cur.fetchall()
+    
+    return render_template("imatkozas.html", minden=minden)
 
 @app.route("/teremtestortenet")
 def teremtes_tortenet():
@@ -295,8 +301,6 @@ def email_verification():
     cur = con.cursor()
     
     code_in_html = request.form["code_html"]
-    
-    print(session["pre_hivo"])
     
     cur.execute(f"SELECT name, email, password, os, class, email_code FROM public.pre_hivok")
     minden = cur.fetchall()

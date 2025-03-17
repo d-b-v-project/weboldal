@@ -242,3 +242,81 @@ body {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+
+.chat-box{
+  width: 95%;
+  max-width: 1200px;
+  margin: 10px auto;
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-top: 2px;
+  padding-bottom: 0px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+
+}
+
+
+.messages {
+  border: 1px solid #ddd;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 0px;
+  height: 300px;
+  overflow-y: auto;
+  background-color: #f9f9f9;
+
+  border-radius: 5px;
+  scrollbar-width: thin;
+  scrollbar-color: #aaa #eee;
+}
+
+.messages::-webkit-scrollbar {
+  width: 8px;
+}
+
+.messages::-webkit-scrollbar-track {
+  background: #eee;
+}
+
+.messages::-webkit-scrollbar-thumb {
+  background-color: #aaa;
+  border-radius: 4px;
+}
+
+.message {
+  /*padding: 8px;*/
+  margin-bottom: 5px;
+  border-bottom: 1px solid #eee;
+}
+
+.message:last-child {
+  border-bottom: none;
+}
+
+.center{
+  /*height: 90vh;*/
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: block;
+}
+
+.send_message_field{
+  width: 90%;
+  top: -10px;
+  padding-top: -10px;
+  border: 3px solid gray;
+  border-radius: 10px;
+  height: 2rem;
+}
+
+.send_message_field:active{
+  border: 0;
+}
