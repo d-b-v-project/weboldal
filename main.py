@@ -249,9 +249,9 @@ def hivove_valas_submit():
         return redirect(url_for("hivovevalas"))
         
     
+    
     cur.execute(f"INSERT INTO pre_hivok (name, email, password, os, class, email_code) VALUES ('{name_in_html}', '{email_in_html}', '{password_hash}', '{os}', '{osztaly}', '{verification_code}')")
     con.commit()
-    
 
     cur.execute(f"SELECT name, email, password, os, class, email_code FROM public.pre_hivok")
     minden = cur.fetchall()
@@ -264,15 +264,10 @@ def hivove_valas_submit():
         recipients=[email_in_html],
         sender=("Olyan ügyes és okos vagyok", "dani@oregpreshaz.eu")
     )
-    message.body = f"""
-    Sikeresen regisztráltál: {minden[0]},
-    {minden[0]} {minden[3]} operációs rendszert használ és
-    {minden[4]}-dik osztályba jár
-    
-    # Ellenőrző kód: {verification_code}
+    message.body = f"Sikeresen regisztráltál: {minden[0]},\n{minden[0]} {minden[3]} operációs rendszert használ és\n{minden[4]}-dik osztályba jár\n# Ellenőrző kód: {verification_code}"
     
     
-    """
+    
     mail.send(message)
     
     
@@ -319,6 +314,10 @@ def email_verification():
     con.commit()
     
     return redirect(url_for("index"))
+
+
+
+
 
 
 @app.route("/elerhetosegek")

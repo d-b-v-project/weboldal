@@ -76,7 +76,7 @@ def dashboard():
     cur = con.cursor()
     cur.execute(f"SELECT in_one FROM messages")
     in_one = cur.fetchall()
-    return render_template("admin/dashboard.html", in_one=in_one)
+    return render_template("admin/dashboard.html", in_one=in_one, user=session["user"])
 
 @admin_pg.route("/short_url_page")
 def short_url_page():
@@ -107,15 +107,66 @@ def admin_log_out():
     session.pop("user", None)
     return redirect(url_for("index"))
 
+
+
+@admin_pg.route("/hivo_edit_page")
+def hivo_edit_page():
+    con = init_db()
+    cur = con.cursor()
+    cur.execute("SELECT name FROM hivok")
+    name_in_user_tb = cur.fetchall()
+    if "user" not in session:
+        flash("Először jelentkezz be!", "error")
+        return redirect(url_for("index"))
+    return render_template("admin/hivo.html", name_in_user_tb=name_in_user_tb)
+
+@admin_pg.route("/stuck_hivo", methods=["POST", "GET"])
+def stuck_hivo():
+    con = init_db()
+    cur = con.cursor()
+    cur.execute("DELETE FROM public.pre_hivok;")
+    con.commit()
+    return redirect(url_for("admin.hivo_edit_page"))
+
+@admin_pg.route("/del_hivo", methods=["POST", "GET"])
+def del_hivo():
+    con = init_db()
+    cur = con.cursor()
+    hivo = request.form["username"]
+    if hivo == '0':
+        flash("Válassz ki egy felhasználót")
+        return redirect(url_for("admin.hivo_edit_page"))
+    cur.execute(f"DELETE FROM public.hivok WHERE name='{hivo}';")
+    con.commit()
+    
+    
+    return redirect(url_for("admin.hivo_edit_page"))
+
+@admin_pg.route("/del_msg/<minden>")
+def del_msg(minden):
+    con = init_db()
+    cur = con.cursor()
+    cur.execute(f"DELETE FROM messages WHERE in_one='{minden}'")
+    con.commit()
+    print(minden)
+    return redirect(url_for("admin.dashboard"))
+
+
+
 @admin_pg.route("/szoveg_szerkesztes_page")
 def szoveg_szerkesztes():
+    if "user" not in session:
+        flash("Először jelentkezz be!", "error")
+        return redirect(url_for("index"))
     con = init_db()
     cur = con.cursor()
     
-    cur.execute("SELECT teremtes FROM public.szovegek;")
-    teremtes = cur.fetchall()
-    cur.execute("SELECT fo_oldal FROM public.szovegek;")
-    fo_oldal = cur.fetchall()
-    cur.execute("SELECT miatyank FROM public.szovegek;")
-    miatyank = cur.fetchall()
+    cur.execute("SELECT * FROM public.szovegek;")
+    minden = cur.fetchall()
+    teremtes = minden[0][0]
+    fo_oldal = minden[0][1]
+    miatyank = minden[0][2]
+    tiz_parancsolat = minden[0][3]
+    
+    
     return render_template("/admin/edit_texts.html", teremtes=teremtes, miatyank=miatyank, fo_oldal=fo_oldal)

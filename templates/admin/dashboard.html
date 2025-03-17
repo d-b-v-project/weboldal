@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<h1>Bejelentkezett!</h1>
+<h1>Bejelentkezett: {{ user }}!</h1>
 
 
 <div class="minden">
@@ -14,7 +14,7 @@
         <center><h1>Beszélgetés</h1></center>
         <ul class="messages">
             {% for minden in in_one%}
-                {{minden[0]}}<br>
+                {{minden[0]}} <a href="/admin/del_msg/{{ minden[0] }}" style="color: red;">(Törlés)</a><br>
             {% endfor %}
             
             

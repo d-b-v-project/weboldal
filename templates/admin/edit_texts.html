@@ -3,11 +3,13 @@
 {% block hivovevalas_a%}{% endblock %}
 
 {% block content %}
-
-<form action="/admin/edit_teremtes" method="post">
-    <textarea type="text" name="teremtes">{{ teremtes[0][0] }}</textarea>
-    <button>szerkesztése</button>
-</form>
+<div class="teremtes">
+    <h4></h4>
+    <form action="/admin/edit_teremtes" method="post">
+        <textarea type="text" name="teremtes">{{ teremtes }}</textarea>
+        <button>szerkesztése</button>
+    </form>
+</div>
 <a href="/admin/log_out">Kijelentkezés</a>
 
 {% endblock %}

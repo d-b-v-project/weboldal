@@ -1,0 +1,47 @@
+{% extends 'admin/admin_base.html' %}
+{% block title %}Admin - Hívők{% endblock %}
+{% block hivovevalas_a%}{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="../static/style.css">
+<link rel="stylesheet" href="../static/admin.css">{% endblock %}
+
+{% block content %}
+
+
+    <div class="header">
+        <h1 class="ttcim">Hívők kezelése</h1>
+    </div>
+<div class="doboz">
+    <div class="box">
+        <form action="/admin/stuck_hivo">
+            <h4>Beragadt felhasználók</h4>
+            <button>Beragadt felhasználó törlése!</button>
+        </form>
+    </div>
+    <div class="box">
+        <h4>Hivő törlése</h4>
+        <form action="/admin/del_hivo" method="post">
+            <select name="username" method="GET" action="/admin/token">
+                <option value="0" selected>-------------</option>
+                {% for i in name_in_user_tb %}
+                <option value="{{i[0]}}" >{{i[0]}}</option>
+                {% endfor %}
+            </select><br>
+            <button>Törlés</button>
+        </form>
+    </div>
+    <div class="box">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div>
+                {% for category, message in messages %}
+                    <p class="{{ category }}" style="font-size: medium;">{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% endwith %}
+    </div>
+
+</div>
+
+{% endblock %}
