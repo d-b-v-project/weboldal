@@ -300,8 +300,8 @@ def email_verification():
     cur.execute(f"SELECT name, email, password, os, class, email_code FROM public.pre_hivok")
     minden = cur.fetchall()
     
-    
-    cur.execute(f"SELECT name, email_code FROM public.pre_hivok WHERE name='{session["pre_hivo"]}'")
+    pre_hivo_sesion = session["pre_hivo"]
+    cur.execute(f"SELECT name, email_code FROM public.pre_hivok WHERE name='{pre_hivo_sesion}'")
     code_in_db = cur.fetchall()[0][1]
     
     if code_in_db != code_in_html:
