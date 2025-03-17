@@ -261,7 +261,7 @@ def hivove_valas_submit():
 
     message = Message(
         subject="E-mail ellenőrzés",
-        recipients=["d-test@oregpreshaz.eu"],
+        recipients=[email_in_html],
         sender=("Olyan ügyes és okos vagyok", "dani@oregpreshaz.eu")
     )
     message.body = f"""
