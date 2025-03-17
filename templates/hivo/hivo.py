@@ -1,18 +1,18 @@
 from flask import Flask, Blueprint, render_template, url_for, redirect, request, flash, session
 import hashlib
 import psycopg2
-from key import *
+import key
 from datetime import datetime
 now = datetime.now()
 
 
 def init_db():
     conn = psycopg2.connect(
-                    database=db_name,
-                    host=host,
-                    user=user_name,
-                    password=pass_word,
-                    port=5433)
+                    database=key.db_name,
+                    host=key.host,
+                    user=key.user_name,
+                    password=key.pass_word,
+                    port=key.port)
     return conn
 
 hivo = Blueprint('hivo', __name__, template_folder='templates')
