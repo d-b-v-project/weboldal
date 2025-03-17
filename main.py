@@ -36,6 +36,7 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = False
 
 DB_FILE = "db/database.db"
+
 def init_db():
     conn = psycopg2.connect(
                     database=db_name,
