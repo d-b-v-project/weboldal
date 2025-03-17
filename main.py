@@ -1,3 +1,4 @@
+#!./venv/bin/python
 from flask import Flask, redirect, render_template, url_for, request, blueprints, flash, abort, session
 from flask_mail import Message, Mail
 import sqlite3
