@@ -158,3 +158,45 @@ textarea{
     display: block;
   }
 }
+
+
+
+.admin_input{
+  border: 0px;
+  background-color: rgba(255, 255, 255, 0);
+  width: auto;
+  height: 2rem;
+  padding-top: 0px;
+  border-radius: 5px;
+  border-left: 3px black solid;
+  border-bottom: 3px black solid;
+  &::placeholder{
+      color: black;
+      font-size: large;
+  }
+  &:focus{
+      border-top: 3px black solid;
+      border-right: 3px black solid;
+      outline-width: 0px;
+  }
+  font-size: large;
+}
+
+.admin_button{
+  background-color: rgba(173, 216, 230, 0.295);
+  outline-width: 0px;
+  border: 0px;
+  width: 10rem;
+  height: 2rem;
+  border-radius: 10px;
+  transition: background-color 0.1s ease-in-out;
+
+  &:hover{
+      background-color: rgba(173, 216, 230, 0.822);
+      transition: background-color 0.1s ease-in-out;
+      cursor: pointer;
+  }
+  &:active{
+      cursor: progress;
+  }
+}

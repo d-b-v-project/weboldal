@@ -4,20 +4,17 @@
 {% block content %}
 
 <link rel="stylesheet" href="../static/index.css">
-<div class="fooldalcim"><h1>Ervinizmus</h1></div>
 
 {% block style %}
 <link rel="stylesheet" href="../static/style.css">
 {% endblock %}
 
 
-<audio autoplay controls id="music">
-    <source src="{{ url_for('static', filename='ervinizmus.mp3') }}" type="audio/mpeg">
-</audio>
+
 
     <div class="minden">
         <div class="header">
-            <h1 class="ttcim">A Teremtéstörténet</h1>
+            <h1 class="ttcim">Ervinizmus</h1>
         </div>
         <div class="szoveg">
             <p class="center">
@@ -40,17 +37,6 @@
     </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script>
-    function PlayMusic() {
-    
-      var play=document.getElementById("music");
-      play.play();
-    }
-    
-    $(document).ready(function(){
-      setTimeout(PlayMusic,3000);
-    })
-        
-</script>
+
 
 {% endblock %}

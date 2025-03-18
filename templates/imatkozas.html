@@ -12,7 +12,9 @@
     </div>
     <div class="szoveg">
         <p class="center">
-
+            <audio autoplay controls id="music">
+                <source src="{{ url_for('static', filename='ervinizmus.mp3') }}" type="audio/mpeg">
+            </audio>
             {% for resz in minden[0] %}
                 <div class="box">
                     {{ resz }}
@@ -25,4 +27,16 @@
         </p>
     </div>
 </div>
+<script>
+    function PlayMusic() {
+    
+      var play=document.getElementById("music");
+      play.play();
+    }
+    
+    $(document).ready(function(){
+      setTimeout(PlayMusic,3000);
+    })
+        
+</script>
 {% endblock %}

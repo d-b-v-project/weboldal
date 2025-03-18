@@ -142,6 +142,56 @@ def del_hivo():
     
     return redirect(url_for("admin.hivo_edit_page"))
 
+
+@admin_pg.route("/change_data")
+def change_data():
+    if "user" not in session:
+        flash("Először jelentkezz be!", "error")
+        return redirect(url_for("index"))
+
+    
+    return render_template("admin/edit_data.html")
+
+@admin_pg.route("/change_name", methods=["post"])
+def change_name():
+    con = init_db()
+    cur = con.cursor()
+    
+    logged_in_people = session["user"]
+    new_name_in_html = request.form["new_name"]
+    
+    cur.execute(f"UPDATE public.login SET name='{new_name_in_html}' WHERE name='{logged_in_people}';")
+    con.commit()
+    
+    session.pop("user", None)
+    return redirect(url_for("index"))
+
+
+@admin_pg.route("/change_password", methods=["post"])
+def change_password():
+    con = init_db()
+    cur = con.cursor()
+    
+    logged_in_people = session["user"]
+    new_password_in_html = request.form["new_password"]
+    old_password_in_html = request.form["old_password"]
+    cur.execute(f"SELECT password FROM login WHERE password='{old_password_in_html}'")
+    if len(cur.fetchall()) == 0:
+        pass
+    """cur.execute(f"UPDATE public.login SET name='{new_name_in_html}' WHERE name='{logged_in_people}';")
+    con.commit()"""
+    
+    return redirect(url_for("admin.change_data"))
+    session.pop("user", None)
+    return redirect(url_for("index"))
+
+
+
+
+
+
+
+
 @admin_pg.route("/del_msg/<minden>")
 def del_msg(minden):
     con = init_db()
