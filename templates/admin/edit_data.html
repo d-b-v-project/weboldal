@@ -16,7 +16,15 @@
         <input placeholder="Új jelszó" type="password" name="new_password" id="" class="admin_input"><br>
         <input type="submit" value="Módosítás">
     </form>
-    {{ error_message }}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div>
+            {% for category, message in messages %}
+                <p class="{{ category }}">{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
     
 </body>
 

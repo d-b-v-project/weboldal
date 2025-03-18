@@ -92,6 +92,8 @@ small{
     background-color: var(--bgcolor);
     border: 1px solid black;
     border-radius: 5px;
+    position: relative;
+    z-index: 950;
 }
 
 .kozep{
@@ -183,7 +185,7 @@ body {
   display: none;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1010px) {
   .topnav a:not(:first-child) {display: none;}
   .topnav a.icon {
     float: right;
@@ -191,7 +193,7 @@ body {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1010px) {
   .topnav.responsive {position: relative;}
   .topnav.responsive .icon {
     position: absolute;
