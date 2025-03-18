@@ -1,0 +1,26 @@
+/* Alap stílusok */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+/* A tartalom konténer, ami kitölti a rendelkezésre álló teret */
+.content {
+    flex: 1; /* Ez biztosítja, hogy a tartalom kitölti a rendelkezésre álló teret */
+    padding: 20px; /* Opcionális: padding a tartalomhoz */
+}
+
+/* Footer stílusok */
+.footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    position: sticky;
+    bottom: 0; /* Mindig az ablak alján marad */
+}

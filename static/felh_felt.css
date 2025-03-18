@@ -1,0 +1,14 @@
+.center{
+    text-align: center;
+    list-style-type: none;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: bisque; 
+    color: #333;
+    text-align: center;
+}  

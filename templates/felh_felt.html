@@ -1,24 +1,42 @@
 {% extends 'base.html' %}
 {% block title %}Ervinizmus - Felhasználási feltételek{% endblock %}
+{% block info_a%}class="active"{% endblock %}
 {% block content %}
-
-
-<html class="teremtes">
-    <div class="minden">
-        <div class="header">
-            <h1 class="ttcim">Felhasználási feltételek</h1>
-        </div>
-        <div class="szoveg">
-            <p class="center">
-                <ul>
-                    <li>Elfogadom hogy az adataim egy postgreSQL adatbázisban vannak tárolva.</li>
-                    <li>Az adatok törlését lehet kérelmezni (<a href="/elerhetosegek">itt</a>) </li>
-                    <li>A személyes információkat <strong>nem</strong> tároljuk</li>
-                    <li>Ha és amennyiben nem értenél egyett ezekkel a feltételekkel kérlek jelezz valamelyik fejlesztőnek: <a href="/elerhetosegek">itt</a></li>
-                </ul>
-            </p>
-        </div>
+<link rel="stylesheet" href="../static/felh_felt.css">
+<div class="minden">
+    <div class="header">
+        <h1 class="ttcim">Felhasználási feltételek</h1>
     </div>
-</html>
+    <div class="szoveg">
+        <p>
+        <ul class="center">
+            <li>Elfogadom hogy az adataim egy postgreSQL adatbázisban vannak tárolva.</li>
+            <li>Az adatok törlését lehet kérelmezni (<a href="/elerhetosegek">itt</a>) </li>
+            <li>A személyes információkat <strong>nem</strong> tároljuk</li>
+            <li>Ha és amennyiben nem értenél egyett ezekkel a feltételekkel kérlek jelezz valamelyik fejlesztőnek: <a
+                    href="/elerhetosegek">itt</a></li>
+        </ul>
+        </p>
+    </div>
+    <br>
+    <br>
+    <br>
+    <h1 class="ttcim">Szabályzat</h1>
+    <div class="szoveg">
+        <p>
+        <ul class="center">
+            <li>Az oldalon</li>
+            <li>Az adatok törlését lehet kérelmezni (<a href="/elerhetosegek">itt</a>) </li>
+            <li>A személyes információkat <strong>nem</strong> tároljuk</li>
+            <li>Ha és amennyiben nem értenél egyett ezekkel a feltételekkel kérlek jelezz valamelyik fejlesztőnek: <a
+                    href="/elerhetosegek">itt</a></li>
+        </ul>
+        </p>
+    </div>
+</div>
+<footer>
+    <p>(A weboldal nem gúnyolásból vagy egyéb ilyen okokból jött lére, hanem csak a szórakoztatás céljából valósult meg!)</p>
+</footer>
 
+</html>
 {% endblock %}

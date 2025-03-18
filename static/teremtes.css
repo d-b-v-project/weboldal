@@ -61,3 +61,10 @@ html {
         text-indent: 15px;
     }
 }
+
+.box{
+    background-color: antiquewhite;
+    border-radius: 10px;
+    border: 2px solid gray;
+    margin-bottom: 10px;
+}

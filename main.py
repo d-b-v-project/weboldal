@@ -326,8 +326,8 @@ def email_verification():
 def elerhetosegek():
     return render_template("elerhetosegek.html")
 
-@app.route("/felhasznalasi_feltetelek")
-def felhasznalasi_feltetelek():
+@app.route("/info")
+def info():
     return render_template("felh_felt.html")
 
 

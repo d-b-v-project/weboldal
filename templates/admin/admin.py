@@ -5,7 +5,6 @@ import key
 from datetime import datetime
 now = datetime.now()
 import sqlite3
-import hash_gen
 
 DB_FILE = "db/database.db"
 
@@ -176,19 +175,13 @@ def change_password():
     logged_in_people = session["user"]
     new_password_in_html = request.form["new_password"]
     old_password_in_html = request.form["old_password"]
-    hash_old = hash_gen.convert(old_password_in_html)
-    hash_new = hash_gen.convert(new_password_in_html)
+    cur.execute(f"SELECT password FROM login WHERE password='{old_password_in_html}'")
+    if len(cur.fetchall()) == 0:
+        pass
+    """cur.execute(f"UPDATE public.login SET name='{new_name_in_html}' WHERE name='{logged_in_people}';")
+    con.commit()"""
     
-    
-    cur.execute(f"SELECT password FROM login WHERE password='{hash_old}'")
-    print(len(cur.fetchall()))
-    if len(cur.fetchall()) == "0":
-        flash("Nem megfelelő a régi jelszó!")
-        return redirect(url_for("admin.change_data"))
-    cur.execute(f"UPDATE public.login SET password='{hash_new}' WHERE name='{logged_in_people}';")
-    con.commit()
-    
-    
+    return redirect(url_for("admin.change_data"))
     session.pop("user", None)
     return redirect(url_for("index"))
 
