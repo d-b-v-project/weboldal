@@ -335,9 +335,7 @@ def wiki():
     minden = minden_nyers[0][0]
     
     modulok = str(minden).split("   ")
-    for i in modulok:
-        print(i)
-        print("===========")
+
     
     wiki_sorok = str(minden).split("\n")
     
