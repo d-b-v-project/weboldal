@@ -327,7 +327,17 @@ def info():
 
 @app.route("/wikipedia")
 def wiki():
-    return render_template("wiki.html")
+    con = init_db()
+    cur = con.cursor()
+    
+    cur.execute("SELECT * FROM wikipedia")
+    minden = cur.fetchall()[0][0]
+    print(minden)
+    wiki_sorok = str(minden).split("\n")
+    
+    
+    
+    return render_template("wiki.html", wiki_sorok=wiki_sorok)
 
 
 if __name__ == "__main__":
