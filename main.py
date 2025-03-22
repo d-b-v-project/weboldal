@@ -331,13 +331,19 @@ def wiki():
     cur = con.cursor()
     
     cur.execute("SELECT * FROM wikipedia")
-    minden = cur.fetchall()[0][0]
-    print(minden)
+    minden_nyers = cur.fetchall()
+    minden = minden_nyers[0][0]
+    
+    modulok = str(minden).split("   ")
+    for i in modulok:
+        print(i)
+        print("===========")
+    
     wiki_sorok = str(minden).split("\n")
     
     
     
-    return render_template("wiki.html", wiki_sorok=wiki_sorok)
+    return render_template("wiki.html", modulok=modulok)
 
 
 if __name__ == "__main__":

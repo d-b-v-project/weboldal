@@ -11,12 +11,12 @@
     </div>
     <div class="szoveg">
         <p class="center">
+        {% for sor in modulok %}
         <div class="box">
-        {% for sor in wiki_sorok %}
             {{ sor }}
-            <br>
-        {% endfor %}
+            <br><br>
         </div>
+        {% endfor %}
 
         </p>
     </div>
