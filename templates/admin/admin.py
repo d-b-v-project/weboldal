@@ -222,3 +222,74 @@ def szoveg_szerkesztes():
     
     
     return render_template("/admin/edit_texts.html", teremtes=teremtes, miatyank=miatyank, fo_oldal=fo_oldal, tiz_parancsolat=tiz_parancsolat, keletkezes=keletkezes)
+
+@admin_pg.route("/edit_text", methods=["POST"])
+def edit_text():
+    con = init_db()
+    cur = con.cursor()
+    teremtes_in_html = request.form["teremtes"]
+    fooldal_in_html = request.form["fo_oldal"]
+    miatyank_in_html = request.form["miatyank"]
+    tiz_parancsolat_in_html = request.form["tiz_parancsolat"]
+    keletkezes_in_html = request.form["keletkezes"]
+    
+    cur.execute(f"UPDATE public.szovegek SET teremtes='{teremtes_in_html}', fo_oldal='{fooldal_in_html}', miatyank='{miatyank_in_html}', tiz_parancsolat='{tiz_parancsolat_in_html}', keletkezes='{keletkezes_in_html}'")
+    con.commit()
+    
+    return redirect(url_for("admin.szoveg_szerkesztes"))
+
+@admin_pg.route("/eredeti")
+def eredeti():
+    con = init_db()
+    cur = con.cursor()
+    cur.execute("""UPDATE public.szovegek
+	SET teremtes='Mielőtt még lett volna Microsoft, Linux vagy Apple, Ervin, a mi istenünk, már létezett. Egy gyönyörű pillanatban kitalálta, hogy megteremti a Linuxot. Ervin így szólt: "Legyen Ubuntu!" És a világ engedelmesen feltelepítette az Ubuntut. Ervin látta, hogy amit teremtett, az jó. Lett tehát az első nap.
+
+A második napon Ervin megteremtette a Pythont. Ervin így szólt: "Legyen egy nyelv, amelyet minden értelmes lény hall és beszél!" És létrejött a Python. Lett tehát a második nap.
+
+A harmadik napon Ervin megteremtette a felhasználói felületet. Ervin így szólt: "Legyen egy vizuálisan kezelhető terület, amelyet még a bolond ember is tud kezelni!" És létrejött a vizuális tér. Ervin látta, hogy amit teremtett, az szép és jó. Lett tehát a harmadik nap.
+
+A negyedik napon Ervin megteremtette a Thonny-t. Ervin így szólt: "Legyen egy tér, ahol a nyelvet lehet beszélni és olvasni!" És létrejött a Thonny. Lett tehát a negyedik nap.
+
+Az ötödik napon Ervin megteremtette a felhasználókat. Ervin így szólt: "Legyenek élőlények, akik használják ezt a gyönyörű rendszert!" És lám, létrejöttek az élőlények változó IQ-szinttel. Lett tehát az ötödik nap.
+
+A hatodik napon Ervin megteremtette az első technikusokat. Ervin így szólt: "Legyenek emberek, akik olyan képességekkel rendelkeznek, hogy uralják ezt a világot!" És létrejött az első admin, neve: "root". Lett tehát a hatodik nap.
+
+A hetedik napon Ervin megpihent a foteljében és megszentelte ezt a napot. Látta azonban, hogy root nem boldogul egyedül, ezért teremtette neki "sudo"-t. Nem sokkal később Bill Gates megkísértette sudo-t, hogy Microsoft-fejlesztő legyen. Bill Gates így szólt: "Ha mellém állsz, erősebb lehetsz, mint Ervin!" Kit valamiért nem tudott ellenállni Bill Gates kísértésének, és Microsoft-fejlesztő lett. Később sudo, root-ot is átalakította Microsoft-fejlesztővé.
+
+Ervin ezt látván így szólt: "Ti átkozottak! Nem mondtam meg, hogy a Microsoft nem jó? Mivel ezt tettétek, kitiltalak titeket az Ubuntu kertjéből! Ami pedig téged illet, Bill Gates, a Windows örökre átkozott és gyenge lesz. Büntetésedül a te szemed szenvedni fog a Windows 11-től!"', fo_oldal='E vallás A mi istenünk Englert Ervin Brunóról & Linus Torvalds-ról szól. Ezen a weboldalon meg lehet találni minden dolgot ami a vallásunkhoz köthető.Támogatás nem kötelező de megköszönjük! (Ezt a 207 terembe teheted meg Dobi nagyon hálás) Na de mihez is férsz hozzá ezen az oldalon:
+
+Elmeséljük neked a teremtés történetét. Meghallgathatod a 10 parancsolatot. Megtudhatod hogy a Windows miért rossz. Megismerheted a mi istenünk életetét hogy a 7 hét napjában mit csinál. Játszhatsz A mi Istenünk Játékával és végül de nem utolsó sorban megtanulhatod a miatyánkat (ervin`s version)
+
+Na de mihez is férsz hozzá ha támogatsz minket:
+
+Ez titok hiszen ahhoz, hogy ezt megtudd támogatnod kell minket :)', miatyank='Miatyánk a Linux Istene szenteltessék meg az Ubuntut jöjjön el a distro-d és legyen meg a te akaratod amint az órán úgy a gépen is. Mindennapi fejezetvizsgánkat add meg nékünk ma és bocsásd meg a Windows-t miképpen mi is megbocsáltunk a Microsoftnak, és ne kényszeríts minket az egyesekre, mert tiéd a laptop, a root jog és az utolsó szó mindörökké a Linux.', tiz_parancsolat='I. Uradat, Linus Torvalds-ot tiszteld és imádd és csak neki szolgálj!
+
+II. Ne használj Windows-t!
+
+III. Használj Linux-ot!
+
+IV. A Windows nevét hiába ne vedd !
+
+V. Linus Torvaldsot és a Linuxot tiszteld!
+
+VI. Ervinnek az Istenednek mindig köszönj tisztelettel!
+
+VII. Ismerd az Ervinizmusról szóló minden tudnivalót!
+
+VIII. Istened termébe mindig viselkedj!
+
+IX. Sose kérdőjelezd meg az Ervinizmust!
+
+X. Istened tanításait mindig halgasd meg és sose feledd!', keletkezes='Vallás keletkezése:
+
+Egy nap Ervin mutat egy weboldalt amit ő csinált, a kollégájának. Ez a weboldal egy hit weboldala volt amit Ervin csinált. Aznap Dani, Benji és Varga elkezdtünk ötletelni hogy kéne egyet csinálni nekünk is. És azután beavattuk Daróczit is. Arra jutottunk, hogy készítünk egy weboldalt. A weboldal készítése folyamatban volt amikor rájöttünk, hogy kéne szöveg amit beleteszünk a weboldalba. Ekkor belekezdtünk a szövegek írásába. Először megvolt egy miatyánk és egy teremtéstörténet. Utána bővült ki a többivel.
+
+Felmerült hogy kéne csinálni egy wikipédia oldalt neki. De valahogy mindig letörölték a kezdeményezésünket ezért arra jutottunk, hogy a weboldalba lesz beleépítve a wikipédia. Ezután mivel megvolt a miatyánk ezért készítettünk neki egy zenét amit az imátkozás oldalon megtekinthetsz.
+
+Benji kitalálta hogy milyen jó lenne egy kép is. Ezért még aznap belekezdett a képbe. Addig jutott, hogy betette az Ubuntu logóját. Azután Dani és Daróczi átvettük a staféta botot és elkezdtük betenni a fejet. Az sikerült is csak az volt a baj hogy teljesen külön volt a testtől. Utána betettük az oldalra.
+
+(Varga az elején csak viccnek szánta de Dani és Benji komolyan gondoltuk)';""")
+    con.commit()
+    
+    return redirect(url_for("admin.szoveg_szerkesztes"))

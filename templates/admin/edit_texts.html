@@ -4,22 +4,40 @@
 
 {% block content %}
 <div class="teremtes">
-    <h4></h4>
+    <a href="/admin/szoveg_szerkesztes_page#teremtes">Teremtés</a>
+    <a href="/admin/szoveg_szerkesztes_page#fo_oldal">Fő oldal</a>
+    <a href="/admin/szoveg_szerkesztes_page#miatyank">Miatyánk</a>
+    <a href="/admin/szoveg_szerkesztes_page#tiz_parancsolat">10 parancsolat</a>
+    <a href="/admin/szoveg_szerkesztes_page#keletkezes">Keletkezés</a>
     <form action="/admin/edit_text" method="post">
-        <textarea type="text" name="teremtes">{{ teremtes }}</textarea>
-        <button>szerkesztése</button>
+        <div id="teremtes">
+            <h3>Teremtés:</h3>
+            <textarea type="text" name="teremtes">{{ teremtes }}</textarea>
+        </div>
         <hr>
-        <textarea type="text" name="fo_oldal">{{ fo_oldal }}</textarea>
-        <button>szerkesztése</button>
+        <div id="fo_oldal">
+            <h3>Fő oldal</h3>
+            <textarea type="text" name="fo_oldal">{{ fo_oldal }}</textarea>
+        </div>
         <hr>
-        <textarea type="text" name="miatyank">{{ miatyank }}</textarea>
-        <button>szerkesztése</button>
+        <div id="miatyank">
+            <h3>Miatyánk</h3>
+            <textarea type="text" name="miatyank">{{ miatyank }}</textarea>
+        </div>
         <hr>
-        <textarea type="text" name="tiz_parancsolat">{{ tiz_parancsolat }}</textarea>
-        <button>szerkesztése</button>
+        <div id="tiz_parancsolat">
+            <h3>10 parancsolat</h3>
+            <textarea type="text" name="tiz_parancsolat">{{ tiz_parancsolat }}</textarea>
+        </div>
         <hr>
-        <textarea type="text" name="keletkezes">{{ keletkezes }}</textarea>
+        <div id="keletkezes">
+            <h3>Keletkezés</h3>
+            <textarea type="text" name="keletkezes">{{ keletkezes }}</textarea>
+        </div>
         <button>szerkesztése</button>
+    </form>
+    <form action="/admin/eredeti">
+        <button>Eredeti szöveg visszaállítása</button>
     </form>
 </div>
 <a href="/admin/log_out">Kijelentkezés</a>
