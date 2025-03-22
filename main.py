@@ -317,11 +317,6 @@ def email_verification():
     
     return redirect(url_for("index"))
 
-
-
-
-
-
 @app.route("/elerhetosegek")
 def elerhetosegek():
     return render_template("elerhetosegek.html")
@@ -329,6 +324,10 @@ def elerhetosegek():
 @app.route("/info")
 def info():
     return render_template("felh_felt.html")
+
+@app.route("/wikipedia")
+def wiki():
+    return render_template("wiki.html")
 
 
 if __name__ == "__main__":

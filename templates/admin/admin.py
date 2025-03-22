@@ -217,8 +217,6 @@ def szoveg_szerkesztes():
     fo_oldal = minden[0][1]
     miatyank = minden[0][2]
     tiz_parancsolat = minden[0][3]
-    keletkezes = minden[0][4]
     
     
-    
-    return render_template("/admin/edit_texts.html", teremtes=teremtes, miatyank=miatyank, fo_oldal=fo_oldal, tiz_parancsolat=tiz_parancsolat, keletkezes=keletkezes)
+    return render_template("/admin/edit_texts.html", teremtes=teremtes, miatyank=miatyank, fo_oldal=fo_oldal)
