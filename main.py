@@ -70,13 +70,17 @@ def index():
     szoveg = fo_oldal[0][0]
     fo_oldal_sorok = str(szoveg).split("\n")
     
+    cur.execute("SELECT keletkezes FROM public.szovegek")
+    keletkezes = cur.fetchall()[0][0]
+    keletkezes_sorok = str(keletkezes).split("\n")
+    
     cur.execute("SELECT name FROM hivok")
     hivok = cur.fetchall()
     hivok_szama = int()
     for i in hivok:
         hivok_szama += 1
     
-    return render_template("index.html", fo_oldal_sorok=fo_oldal_sorok, hivok_szama=hivok_szama)
+    return render_template("index.html", fo_oldal_sorok=fo_oldal_sorok, hivok_szama=hivok_szama, keletkezes_sorok=keletkezes_sorok)
 
 
 

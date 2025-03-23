@@ -69,3 +69,14 @@ html {
     border: 2px solid gray;
     margin-bottom: 10px;
 }
+
+img{
+    width: 50%;
+    border-radius: 10px;
+}
+.kep{
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
