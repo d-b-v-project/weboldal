@@ -268,7 +268,7 @@ def hivove_valas_submit():
     message = Message(
         subject="E-mail ellenőrzés",
         recipients=[email_in_html],
-        sender=("Olyan ügyes és okos vagyok", "dani@oregpreshaz.eu")
+        sender=("Email ellenőrzése", "automail@ervinizmus.eu")
     )
     message.body = f"Sikeresen regisztráltál: {minden[0]},\n{minden[0]} {minden[3]} operációs rendszert használ és\n{minden[4]}-dik osztályba jár\n# Ellenőrző kód: {verification_code}"
     
