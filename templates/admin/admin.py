@@ -294,18 +294,3 @@ Benji kitalálta hogy milyen jó lenne egy kép is. Ezért még aznap belekezdet
     
     return redirect(url_for("admin.szoveg_szerkesztes"))
 
-@admin_pg.route("/send_message", METHODS=["POST"])
-def send_message():
-    con = init_db()
-    cur = con.cursor()
-    message_in_html = request.form["message"]
-    user = session["user"]
-    date = now.strftime("%Y.%m.%d, %H:%M:%S")
-    in_one = f"{user}: {message_in_html} | {date}"
-    cur.execute(f"INSERT INTO messages (name, message, date, in_one) values ('{user}', '{message_in_html}', '{date}', '{in_one}')")
-    con.commit()
-    ip = request.remote_addr
-    date = now.strftime("%Y.%m.%d, %H:%M:%S")
-    #logged_in_user = session["user"]
-    return redirect(url_for("hivo.dashboard"))
-	return redirect(url_for("admin.dashboard"))
