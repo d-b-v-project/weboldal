@@ -216,7 +216,10 @@ def del_msg(minden):
     con = init_db()
     cur = con.cursor()
     print(minden)
-    cur.execute(f"DELETE FROM messages WHERE in_one={minden}")
+    if minden[0] == "'":
+        cur.execute(f"DELETE FROM messages WHERE in_one={minden}")
+    else:
+        cur.execute(f"DELETE FROM messages WHERE in_one='{minden}'")
     con.commit()
     print(minden)
     return redirect(url_for("admin.dashboard"))
