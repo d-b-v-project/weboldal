@@ -85,6 +85,11 @@ def send_message():
     message_in_html = request.form["message"]
     user = session["hivo"]
     date = now.strftime("%Y.%m.%d, %H:%M:%S")
+    url_reszek = ["https://", "http://", ".eu", ".hu", ".net", ".com", ".de", ".en"]
+    for tiltott_url in url_reszek:
+        if tiltott_url in message_in_html:
+            flash("Nem lehet linket küldeni.")
+            return redirect(url_for("hivo.dashboard"))
     in_one = f"{user}: {message_in_html} | {date}"
     cur.execute(f"INSERT INTO messages (name, message, date, in_one) values ('{user}', '{message_in_html}', '{date}', '{in_one}')")
     con.commit()

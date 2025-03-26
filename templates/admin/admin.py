@@ -215,7 +215,8 @@ def change_password():
 def del_msg(minden):
     con = init_db()
     cur = con.cursor()
-    cur.execute(f"DELETE FROM messages WHERE in_one='{minden}'")
+    print(minden)
+    cur.execute(f"DELETE FROM messages WHERE in_one={minden}")
     con.commit()
     print(minden)
     return redirect(url_for("admin.dashboard"))
