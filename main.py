@@ -348,5 +348,9 @@ def wiki():
     return render_template("wiki.html", modulok=modulok)
 
 
+
+
+
+
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

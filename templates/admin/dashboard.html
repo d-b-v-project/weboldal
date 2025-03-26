@@ -13,13 +13,18 @@
     <div class="chat" id="chat-box" class="chat-box">
         <center><h1>Beszélgetés</h1></center>
         <ul class="messages">
-            {% for minden in in_one%}
-                {{minden[0]}} <a href="/admin/del_msg/{{ minden[0] }}" style="color: red;">(Törlés)</a><br>
-            {% endfor %}
             
-            
+            <div class="message">
+                {% for message_data in minden %}
+                {% if message_data[0] == "Dani" or message_data[0] == "Benji" %}
+                    <span style="color: rgb(243, 0, 0);">{{ message_data[0] }}</span>: {{ message_data [1] }} | {{ message_data[3] }} <a href="/admin/del_msg/{{ in_one[0] }}" style="color: red;">(Törlés)</a><br>
+                {% else %}
+                    <span style="color: rgb(40, 70, 70);">{{ message_data[0] }}</span>: {{ message_data [1] }} | {{ message_data[3] }} <a href="/admin/del_msg/{{ in_one }}" style="color: red;">(Törlés)</a><br>
+                {% endif %}
+                {% endfor %}
+            </div>
         </ul>
-        <form action="/hivo/send_message" method="post"><center class="user_form lent"><input type="text" placeholder="Üzenet" name="message"> <button class="admin_button">Küldés</button></center></form>
+        <form action="/admin/send_message" method="post"><center class="user_form lent"><input type="text" placeholder="Üzenet" name="message"> <button class="admin_button">Küldés</button></center></form>
     </div>
 </div>
 

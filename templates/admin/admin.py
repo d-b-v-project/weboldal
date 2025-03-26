@@ -74,9 +74,28 @@ def dashboard():
         return redirect(url_for("index"))
     con = init_db()
     cur = con.cursor()
+    cur.execute(f"SELECT * FROM messages")
+    minden = cur.fetchall()
     cur.execute(f"SELECT in_one FROM messages")
     in_one = cur.fetchall()
-    return render_template("admin/dashboard.html", in_one=in_one, user=session["user"])
+    
+    rendes = {}
+    count = 0
+    
+    
+    print(in_one[0][count])
+    for message in minden:
+        sender = message[0]
+        message_text = message[1]
+        send_date = message[2]
+        rendes[in_one[count][0]] = [sender, message_text, send_date]
+        count += 1
+    print(rendes)
+        
+    for in_ones, all in rendes.items():
+        print(f"{in_ones} = {all}")
+        
+    return render_template("admin/dashboard.html", in_one=in_one, user=session["user"], minden=minden, rendes=rendes)
 
 @admin_pg.route("/short_url_page")
 def short_url_page():
@@ -294,3 +313,17 @@ Benji kitalálta hogy milyen jó lenne egy kép is. Ezért még aznap belekezdet
     
     return redirect(url_for("admin.szoveg_szerkesztes"))
 
+@admin_pg.route("/send_message", methods=["POST"])
+def send_message():
+    con = init_db()
+    cur = con.cursor()
+    message_in_html = request.form["message"]
+    user = session["user"]
+    date = now.strftime("%Y.%m.%d, %H:%M:%S")
+    in_one = f"{user}: {message_in_html} | {date}"
+    cur.execute(f"INSERT INTO messages (name, message, date, in_one) values ('{user}', '{message_in_html}', '{date}', '{in_one}')")
+    con.commit()
+    ip = request.remote_addr
+    date = now.strftime("%Y.%m.%d, %H:%M:%S")
+    #logged_in_user = session["user"]
+    return redirect(url_for("admin.dashboard"))
