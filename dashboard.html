@@ -1,0 +1,30 @@
+{% extends 'admin/admin_base.html' %}
+{% block title %}Ervinizmus - Bejelentkezés{% endblock %}
+{% block hivovevalas_a%}{% endblock %}
+
+{% block content %}
+
+<h1>Bejelentkezett: {{ user }} (Admin)!</h1>
+
+
+<div class="minden">
+    <space style="width: 20px;"></space>
+
+    <div class="chat" id="chat-box" class="chat-box">
+        <center><h1>Beszélgetés</h1></center>
+        <ul class="messages">
+            
+            <div class="message">
+                {% for in_one, minden in rendes.items() %}
+                    {{ minden[0] }}: {{ minden[1] }} | {{ minden[2] }} ||| <a href="/admin/del_msg/{{ in_one }}" style="color: red;">Törlés</a> <br>
+                {% endfor %}
+            </div>
+        </ul>
+        <form action="/admin/send_message" method="post"><center class="user_form lent"><input type="text" placeholder="Üzenet" name="message"> <button class="admin_button">Küldés</button></center></form>
+    </div>
+</div>
+
+
+<a href="/admin/log_out">Kijelentkezés</a>
+
+{% endblock %}
