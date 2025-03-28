@@ -1,81 +1,20 @@
 {% extends 'base.html' %}
 {% block title %}Ervinizmus - Hivővé válás{% endblock %}
 {% block hivovevalas_a%}class="active"{% endblock %}
-{% block content %}
 {% block style %}
 <link rel="stylesheet" href="../static/style.css">
-<link rel="stylesheet" href="../static/hivoleszek.css">{% endblock %}
-
-<script src="https://www.google.com/recaptcha/api.js"></script>
-<script>
-    function onSubmit(token) {
-      document.getElementById("kuldes").submit();
-    }
-</script>
-
-<div class="minden">
-    <center><h1>Regisztráció</h1></center>
-    <form action="/hivove_valas_submit" method="post" id="kuldes">
-        <div class="al_minden inp_div">
-            <label >
-                <input type="text" name="name" placeholder="Felhasználónév" class="inp_field"><br>
-                <input type="email" name="email" id="" placeholder="Email cím" class="inp_field"><br>
-                <input type="password" name="password" placeholder="Jelszó" id="" class="inp_field">
-            </label><br><br>
-            
+<link rel="stylesheet" href="../static/teremtes.css">{% endblock %}
+{% block content %}
+<div class="doboz">
+    <div class="header">
+        <h1 class="ttcim">Az oldal fejlesztés alatt áll!</h1>
+    </div>
+    <div class="szoveg">
+        <p class="center">
+            <div class="box">
+            A weboldalon a hívővé válás regisztrációs lap nem lessz addig elérhető amíg az oldal fejlesztés alatt áll!
         </div>
-        <div class="question al_minden">
-            <label for="">Válaszd ki hogy milyen operációs renszert használsz: </label><br>
-            <label>
-                <input type="radio" name="os" value="windows" class="inp_radio"> windows
-            </label><br>
-            <label>
-                <input type="radio" name="os" value="linux" class="inp_radio"> linux
-            </label><br>
-            <label>
-                <input type="radio" name="os" value="mac" class="inp_radio"> mac
-            </label><br>
-        </div><br>
-        <div class="question al_minden">
-            <label for="">Osztályod:</label><br>
-            <label>
-                <input type="radio" name="class" value="9" class="inp_radio"> 9
-            </label><br>
-            <label>
-                <input type="radio" name="class" value="10" class="inp_radio"> 10
-            </label><br>
-            <label>
-                <input type="radio" name="class" value="11" class="inp_radio"> 11
-            </label><br>
-            <label>
-                <input type="radio" name="class" value="12" class="inp_radio"> 12
-            </label><br>
-            <label>
-                <input type="radio" name="class" value="13" class="inp_radio"> 13
-            </label><br>
-            <label>
-                <input type="radio" name="class" value="0" class="inp_radio"> Nem adom meg!
-            </label><br>
-        </div>
-        <div>
-            <label for=""><input type="checkbox" name="hozzajarulas" id="">Elolvastam és hozzájárulok a <a href="/info">felhasználási feltételekben</a> foglaltakhoz</label>
-            
-        </div>
-        <button class="g-recaptcha" 
-            data-sitekey="{{ site_key }}" 
-            data-callback='onSubmit' 
-            data-action='submit'
-            type="submit">Regisztráció</button>
-    </form>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-        <div>
-            {% for category, message in messages %}
-                <p class="{{ category }}">{{ message }}</p>
-            {% endfor %}
-        </div>
-    {% endif %}
-    {% endwith %}
+        </p>
+    </div>
 </div>
-
 {% endblock %}
