@@ -14,6 +14,7 @@ from datetime import datetime
 import string
 import get_urls
 
+
 try:
     from key import db_name, user_name, pass_word, host
 except:
@@ -250,13 +251,27 @@ def hivove_valas_submit():
     cur.execute("SELECT * FROM pre_hivok")
     pre_hivo = cur.fetchall()
     
-    if len(pre_hivo) != 0:
+    
+    now = datetime.now()
+    if len(pre_hivo) > 20:
         flash("Valaki jelenleg próbál bejelentkezni. Kérem várjon")
         return redirect(url_for("hivovevalas"))
+    
+    
+    
+    
+    cur.execute(f"SELECT join_time FROM pre_hivok")
+    join_times = cur.fetchall()
+    
+    for join_time in join_times:
+        join_time = join_time[0][:-2]
+        print(join_time)
+    return redirect(url_for("hivovevalas"))
+    
         
     
-    
-    cur.execute(f"INSERT INTO pre_hivok (name, email, password, os, class, email_code) VALUES ('{name_in_html}', '{email_in_html}', '{password_hash}', '{os}', '{osztaly}', '{verification_code}')")
+    date = now.strftime("%Y.%m.%d, %H:%M:%S")
+    cur.execute(f"INSERT INTO pre_hivok (name, email, password, os, class, email_code, join_time) VALUES ('{name_in_html}', '{email_in_html}', '{password_hash}', '{os}', '{osztaly}', '{verification_code}', '{date}')")
     con.commit()
 
     cur.execute(f"SELECT name, email, password, os, class, email_code FROM public.pre_hivok")
