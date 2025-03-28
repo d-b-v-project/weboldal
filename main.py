@@ -263,10 +263,6 @@ def hivove_valas_submit():
     cur.execute(f"SELECT join_time FROM pre_hivok")
     join_times = cur.fetchall()
     
-    for join_time in join_times:
-        join_time = join_time[0][:-2]
-        print(join_time)
-    return redirect(url_for("hivovevalas"))
     
         
     
@@ -310,6 +306,23 @@ def hivove_valas_submit():
 def email_verification_page():
     print(session["pre_hivo"])
     return render_template("email_ver.html")
+
+
+@app.route("/tiz_parancsolat")
+def tiz_parancsolat():
+    con = init_db()
+    cur = con.cursor()
+    
+    cur.execute("SELECT tiz_parancsolat FROM szovegek")
+    tiz_parancsolat = cur.fetchall()[0][0]
+    
+    parancsolat = str(tiz_parancsolat).split("\n")
+    
+    
+    
+    
+    return render_template("tiz_parancsolat.html", parancsolat=parancsolat)
+
 
 @app.route("/email_verification", methods=["POST"])
 def email_verification():

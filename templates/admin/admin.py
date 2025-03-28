@@ -135,10 +135,12 @@ def hivo_edit_page():
     cur = con.cursor()
     cur.execute("SELECT name FROM hivok")
     name_in_user_tb = cur.fetchall()
+    cur.execute("SELECT name FROM pre_hivok")
+    name_in_pre_user_tb = cur.fetchall()
     if "user" not in session:
         flash("Először jelentkezz be!", "error")
         return redirect(url_for("index"))
-    return render_template("admin/hivo.html", name_in_user_tb=name_in_user_tb)
+    return render_template("admin/hivo.html", name_in_user_tb=name_in_user_tb, name_in_pre_user_tb=name_in_pre_user_tb)
 
 @admin_pg.route("/stuck_hivo", methods=["POST", "GET"])
 def stuck_hivo():
@@ -157,6 +159,21 @@ def del_hivo():
         flash("Válassz ki egy felhasználót")
         return redirect(url_for("admin.hivo_edit_page"))
     cur.execute(f"DELETE FROM public.hivok WHERE name='{hivo}';")
+    con.commit()
+    
+    
+    return redirect(url_for("admin.hivo_edit_page"))
+
+
+@admin_pg.route("/del_pre_hivo", methods=["POST", "GET"])
+def del_pre_hivo():
+    con = init_db()
+    cur = con.cursor()
+    hivo = request.form["username"]
+    if hivo == '0':
+        flash("Válassz ki egy felhasználót")
+        return redirect(url_for("admin.hivo_edit_page"))
+    cur.execute(f"DELETE FROM public.pre_hivok WHERE name='{hivo}';")
     con.commit()
     
     

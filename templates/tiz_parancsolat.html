@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Ervinizmus - Felhasználási feltételek{% endblock %}
+{% block info_a%}class="active"{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="../static/felh_felt.css">
+<div class="minden">
+    <div class="header">
+        <h1 class="ttcim">Tíz parancsolat</h1>
+    </div>
+    <div class="szoveg">
+        <p>
+        <ul class="center">
+            <div class="box">
+                {% for parancs in parancsolat %}
+                    {{ parancs }} <br>
+                {% endfor %}
+                <br>
+                <br>
+                <a href="/hivovevalas">Vissza</a>
+            </div>
+        </ul>
+        </p>
+    </div>
+    <br>
+    <br>
+    <br>
+    
+<footer>
+    <p>(A weboldal nem gúnyolásból vagy egyéb ilyen okokból jött lére, hanem csak a szórakoztatás céljából valósult meg!)</p>
+</footer>
+
+</html>
+{% endblock %}

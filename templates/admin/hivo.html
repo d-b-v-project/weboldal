@@ -15,7 +15,15 @@
     <div class="box">
         <form action="/admin/stuck_hivo">
             <h4>Beragadt felhasználók</h4>
-            <button>Beragadt felhasználó törlése!</button>
+            <form action="/admin/del_pre_hivo" method="post">
+                <select name="username" method="GET" action="/admin/token">
+                    <option value="0" selected>-------------</option>
+                    {% for i in name_in_pre_user_tb %}
+                    <option value="{{i[0]}}" >{{i[0]}}</option>
+                    {% endfor %}
+                </select><br>
+                <button>Törlés</button>
+            </form>
         </form>
     </div>
     <div class="box">

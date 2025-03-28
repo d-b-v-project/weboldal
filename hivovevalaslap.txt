@@ -79,3 +79,37 @@
 </div>
 
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% extends 'base.html' %}
+{% block title %}Ervinizmus - Hivővé válás{% endblock %}
+{% block hivovevalas_a%}class="active"{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="../static/style.css">
+<link rel="stylesheet" href="../static/teremtes.css">{% endblock %}
+{% block content %}
+<div class="doboz">
+    <div class="header">
+        <h1 class="ttcim">Az oldal fejlesztés alatt áll!</h1>
+    </div>
+    <div class="szoveg">
+        <p class="center">
+            <div class="box">
+            A weboldalon a hívővé válás regisztrációs lap nem lessz addig elérhető amíg az oldal fejlesztés alatt áll!
+        </div>
+        </p>
+    </div>
+</div>
+{% endblock %}
