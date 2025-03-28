@@ -3,7 +3,6 @@ function myFunction() {
   var y = document.getElementById("login");
   if (x.className === "topnav") {
     y.style.display = "none"
-    
     x.className += " responsive";
   } else {
     y.style.display = "block"
