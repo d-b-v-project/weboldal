@@ -94,6 +94,8 @@ def generate_short_code(length=6):
 # Főoldal
 @app.route('/linkshorter', methods=['POST', 'GET'])
 def short_link():
+    conn = init_db()
+    cursor = conn.cursor()
     tiltott_url = list(get_urls.open_file("main.py")) 
     if request.method == 'POST':
         full_url = request.form['url']
@@ -108,13 +110,12 @@ def short_link():
                 return redirect(url_for("short_link"))
             
         
-        with sqlite3.connect(DB_FILE) as conn:
-            cursor = conn.cursor()
-            cursor.execute(f"SELECT short, full FROM urls WHERE short='{short_url}'")
-            a = cursor.fetchall()
-            if len(a) != 0:
-                flash(f"Ez a rövidítés használva van már!")
-                return redirect(url_for("short_link"))
+        
+        cursor.execute(f"SELECT short, \"full\" FROM urls WHERE short='{short_url}'")
+        a = cursor.fetchall()
+        if len(a) != 0:
+            flash(f"Ez a rövidítés használva van már!")
+            return redirect(url_for("short_link"))
         
         if len(short_url) > 16:
             flash("Maximális hossza a rövid url-nek 16 karakter")
@@ -124,10 +125,9 @@ def short_link():
             return redirect(url_for("short_link"))
         short_code = short_url
         
-        with sqlite3.connect(DB_FILE) as conn:
-            cursor = conn.cursor()
-            cursor.execute(f"INSERT INTO urls (short, full) VALUES ('{short_code}', '{full_url}')")
-            conn.commit()
+        
+        cursor.execute(f"INSERT INTO urls (short, \"full\") VALUES ('{short_code}', '{full_url}')")
+        conn.commit()
         
         short_url = request.host_url + short_code
         return render_template('linkshort.html', short_url=short_url)
@@ -137,9 +137,10 @@ def short_link():
 # Átirányítás rövid URL alapján
 @app.route('/<short_code>')
 def redirect_url(short_code):
-    with sqlite3.connect(DB_FILE) as conn:
+        conn = init_db()
         cursor = conn.cursor()
-        cursor.execute("SELECT full FROM urls WHERE short = ?", (short_code,))
+        cursor = conn.cursor()
+        cursor.execute(f"SELECT \"full\" FROM urls WHERE short = '{short_code}'")
         result = cursor.fetchone()
         
         if result:
