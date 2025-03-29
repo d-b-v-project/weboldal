@@ -14,7 +14,7 @@
         <center><h1>Beszélgetés</h1></center>
         <ul class="messages">
             
-            <div class="message">
+            <div class="message" id="msg-box">
                 {% for in_one, minden in rendes.items() %}
                     {{ minden[0] }}: {{ minden[1] }} | {{ minden[2] }} ||| <a href="/admin/del_msg/{{ in_one }}" style="color: red;">Törlés</a> <br>
                 {% endfor %}
