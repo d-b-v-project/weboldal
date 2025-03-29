@@ -8,7 +8,10 @@
     <title>{% block title %}Ervinizmus{% endblock %}</title>
     {% block style %}
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> {% endblock %}
-    {% block js %} <script src="{{ url_for('static', filename='main.js') }}"></script> {% endblock %}
+    {% block js %}
+        <script src="{{ url_for('static', filename='main.js') }}"></script>
+        <script src="{{ url_for('static', filename='get_message.js') }}"></script>
+    {% endblock %} 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 

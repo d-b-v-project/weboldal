@@ -1,6 +1,7 @@
 {% extends 'hivo_base.html' %}
-{% block title %}Ervinizmus - Bejelentkezés{% endblock %}
+{% block title %}Ervinizmus - Hívő{% endblock %}
 {% block hivovevalas_a%}{% endblock %}
+
 
 {% block content %}
 
@@ -10,11 +11,13 @@
 <div class="minden">
     <space style="width: 20px;"></space>
 
-    <div class="chat" id="chat-box" class="chat-box">
+    <div id="chat-box" class="chat-box">
         <center><h1>Beszélgetés</h1></center>
         <ul class="messages" id="messages">
             
-            
+            {% for item in in_one %}
+                <div class="msg">{{ item[0] }}</div>
+            {% endfor %}
             
         </ul>
         <form action="/hivo/send_message" method="post"><center class="user_form lent"><input type="text" placeholder="Üzenet" name="message" class="send_message_field"> <button class="admin_button">Küldés</button></center></form>

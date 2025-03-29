@@ -386,7 +386,6 @@ def api(token):
     
     cur.execute("SELECT name, message, date FROM messages")
     adat = cur.fetchall()
-    print(adat)
     
     return jsonify(adat)
  
