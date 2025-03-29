@@ -192,7 +192,7 @@ mail = Mail(app)
 def hivove_valas_submit():
     global old_minute
     con = init_db()
-    cur = con.cursor()
+    cur= con.cursor()
     hozzajarult = False
     
     tiltott_nevek = ["ADOLF HITLER", "HITLER", "ENGLERT", "ERVIN"]
@@ -213,13 +213,11 @@ def hivove_valas_submit():
         if tiltott_nev in name_in_html:
             flash("Ez a felhasználónév le van tiltva!")
             return redirect(url_for("hivovevalas"))
-    
     try:
         hozzajarulas = request.form["hozzajarulas"]
         hozzajarult = True
     except:
         hozzajarult = False
-    
     if hozzajarult == False:
         flash("El kell fogadnon a felhasználási feltételeket!")
         return redirect(url_for("hivovevalas"))
