@@ -1,5 +1,5 @@
 #!./venv/bin/python
-from flask import Flask, redirect, render_template, url_for, request, blueprints, flash, abort, session
+from flask import Flask, redirect, render_template, url_for, request, blueprints, flash, abort, session, jsonify
 from flask_mail import Message, Mail
 import sqlite3
 import psycopg2
@@ -376,7 +376,20 @@ def wiki():
 
 
 
-
+@app.route("/api/<token>")
+def api(token):
+    if token != "1103":
+        print("Nem jó")
+        return redirect(url_for("index"))
+    con = init_db()
+    cur = con.cursor()
+    
+    cur.execute("SELECT name, message, date FROM messages")
+    adat = cur.fetchall()
+    print(adat)
+    
+    return jsonify(adat)
+ 
 
 
 if __name__ == "__main__":
