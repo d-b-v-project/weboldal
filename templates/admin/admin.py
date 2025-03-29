@@ -100,13 +100,15 @@ def dashboard():
 
 @admin_pg.route("/short_url_page")
 def short_url_page():
+    conn = init_db()
+    cursor = conn.cursor()
     if "user" not in session:
         flash("Először jelentkezz be!", "error")
         return redirect(url_for("index"))
-    with sqlite3.connect(DB_FILE) as conn:
-        cursor = conn.cursor()
-        cursor.execute("SELECT full, short FROM urls")
-        data = cursor.fetchall()
+    
+    cursor = conn.cursor()
+    cursor.execute("SELECT \"full\", short FROM urls")
+    data = cursor.fetchall()
     
     url_header = ["Teljes url", "Rövidített"]
     
