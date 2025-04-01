@@ -14,7 +14,7 @@ from datetime import datetime
 import string
 import get_urls
 
-
+message_stat = False
 try:
     from key import db_name, user_name, pass_word, host
 except:
@@ -387,8 +387,19 @@ def api(token):
     cur.execute("SELECT name, message, date FROM messages")
     adat = cur.fetchall()
     
+    
     return jsonify(adat)
- 
+
+
+@app.route("/stat_api/<token>")
+def stat_api(token):
+    if token != "1104":
+        print("Nem jó")
+        return redirect(url_for("index"))
+    con = init_db()
+    cur = con.cursor()
+    
+    return jsonify({"message_stat": message_stat}) 
 
 
 if __name__ == "__main__":

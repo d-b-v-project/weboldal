@@ -23,6 +23,9 @@ const chatContainer = document.getElementById(msg_box);
 
 // Function to scroll to bottom
 
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById(msg_box);
     let shouldAutoScroll = true;
