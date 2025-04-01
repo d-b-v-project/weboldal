@@ -85,6 +85,14 @@ def send_message():
     message_in_html = request.form["message"]
     user = session["hivo"]
     date = now.strftime("%Y.%m.%d, %H:%M:%S")
+    
+    if message_in_html == "":
+        flash("Nem lehet üresen beküldeni.")
+        return redirect(url_for("hivo.dashboard"))
+    elif message_in_html == " " or message_in_html == "  " or message_in_html == "   " or message_in_html == "    ":
+        flash("Nem lehet üresen beküldeni.")
+        return redirect(url_for("hivo.dashboard"))
+        
     url_reszek = ["https://", "http://", ".eu", ".hu", ".net", ".com", ".de", ".en"]
     for tiltott_url in url_reszek:
         if tiltott_url in message_in_html:

@@ -22,6 +22,15 @@
         </ul>
         <form action="/hivo/send_message" method="post"><center class="user_form lent"><input type="text" placeholder="Üzenet" name="message" class="send_message_field"> <button class="admin_button">Küldés</button></center></form>
     </div>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div>
+            {% for category, message in messages %}
+                <p class="{{ category }}">{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
 </div>
 
 
