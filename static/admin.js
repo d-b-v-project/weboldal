@@ -15,7 +15,7 @@ function get_message() {
     .catch(error => console.log("error"))
     
 }
-const intervalId = setInterval(get_message, 1500);
+//const intervalId = setInterval(get_message, 1500);
 
 
 const scrollableDiv = document.getElementById(msg_box);

@@ -9,7 +9,8 @@
     <a href="/admin/szoveg_szerkesztes_page#miatyank">Miatyánk</a>
     <a href="/admin/szoveg_szerkesztes_page#tiz_parancsolat">10 parancsolat</a>
     <a href="/admin/szoveg_szerkesztes_page#keletkezes">Keletkezés</a>
-    <form action="/admin/edit_text" method="post">
+    <form action="/admin/edit_text" action="/admin/test" method="post">
+        
         <div id="teremtes">
             <h3>Teremtés:</h3>
             <textarea type="text" name="teremtes">{{ teremtes }}</textarea>
@@ -35,10 +36,16 @@
             <textarea type="text" name="keletkezes">{{ keletkezes }}</textarea>
         </div>
         <button>szerkesztése</button>
+        
     </form>
+    
     <form action="/admin/eredeti">
         <button>Eredeti szöveg visszaállítása</button>
     </form>
+    <form action="/admin/add_eredeti">
+        <button style="background-color: red;">Legyen eredeti.</button>
+    </form>
+    
 </div>
 <a href="/admin/log_out">Kijelentkezés</a>
 
