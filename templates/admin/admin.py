@@ -118,10 +118,11 @@ def short_url_page():
 @admin_pg.route("/del_url/<short>")
 def del_url(short):
     short_url = short[1:-1]
-    with sqlite3.connect(DB_FILE) as conn:
-        cursor = conn.cursor()
-        cursor.execute(f"DELETE FROM urls WHERE short='{short_url}'")
-        data = cursor.fetchall()
+    conn = init_db()
+    cursor = conn.cursor()
+    cursor = conn.cursor()
+    cursor.execute(f"DELETE FROM urls WHERE short='{short_url}'")
+    conn.commit()
     return(redirect(url_for("admin.short_url_page")))
 
 @admin_pg.route("/log_out")
