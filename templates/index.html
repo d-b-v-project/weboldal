@@ -3,56 +3,65 @@
 {% block index_a%}class="active"{% endblock %}
 {% block content %}
 
-<link rel="stylesheet" href="../static/index.css">
-
-{% block style %}
-<link rel="stylesheet" href="../static/style.css">
-{% endblock %}
 
 
 
 
-    <div class="minden">
-        <div class="header">
-            <h1 class="ttcim">Ervinizmus</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    Ervinizmus
+                </div>
+                <div class="card-body bg-body-secondary">
+                    <figure>
+                        <blockquote class="blockquote">
+                            <p>
+                                {% for sor in fo_oldal_sorok %}
+                                {{sor}} <br>
+                                {% endfor %}
+                            </p>
+                        </blockquote>
+                        <figcaption class="blockquote-footer">
+                            Someone famous in <cite title="Source Title">Source Title</cite>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+            <div class="card text-bg-secondary mb-3 mt-1" style="max-width: auto;">
+                <div class="card-header">Hívők</div>
+                <div class="card-body">
+                    <h5 class="card-title">Hívők száma</h5>
+                    <p class="card-text">A beregisztrált hívők száma: {{ hivok_szama }}</p>
+                </div>
+            </div>
+
         </div>
-        <div class="szoveg">
-            <p class="center">
-        
-                {% for sor in fo_oldal_sorok %}
-                    {{sor}} <br>
-                {% endfor %}
-                
-            </p>
-            
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    {{ keletkezes_sorok[0] }}
+                </div>
+                <div class="card-body bg-body-secondary">
+                    <figure>
+                        <blockquote class="blockquote">
+                            <p>
+                                {% for i in keletkezes_sorok %}
+                                {{ i }} <br>
+                                {% endfor %}
+                            </p>
+                        </blockquote>
+                        <figcaption class="blockquote-footer">
+                            Someone famous in <cite title="Source Title">Source Title</cite>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
         </div>
-        <br>
-        
     </div>
-    <div class="minden">
-        <div class="szoveg">
-            <p class="center" style="text-align: justify;">
-                
-                <h2> {{ keletkezes_sorok[0] }}</h2>
-                {% for i in keletkezes_sorok %}
-                    {{ i }} <br>
-                {% endfor %}
-                
-            </p>
-            
-        </div>
-    </div>
-    <div class="hivok">
-        <div class="szoveg">
-            <p class="center">
-        
-                Hívők száma: {{ hivok_szama }}
-            
-            </p>
-        </div>
-    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-
-
+</div>
 {% endblock %}
