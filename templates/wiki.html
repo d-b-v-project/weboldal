@@ -1,24 +1,21 @@
 {% extends 'base.html' %}
 {% block title %}Ervinizmus - Wikipédia{% endblock %}
 {% block wiki_a %} class="active" {% endblock %}
-{% block style %}
-<link rel="stylesheet" href="../static/style.css">
-<link rel="stylesheet" href="../static/teremtes.css">{% endblock %}
 {% block content %}
-<div class="doboz">
-    <div class="header">
-        <h1 class="ttcim">Wikipédia</h1>
-    </div>
-    <div class="szoveg">
-        <p class="center">
-        {% for sor in modulok %}
-        <div class="box">
-            {{ sor }}
-            <br><br>
-        </div>
-        {% endfor %}
 
-        </p>
+<div class="container">
+    <div class="card border-dark mb-3 mt-5" style="max-width: 90rem;">
+        <div class="card-header">Wikipédia</div>
+        <div class="card-body">
+            <h5 class="card-title">Dark card title</h5>
+            <p class="card-text">
+                {% for sor in modulok %}
+                    {{ sor }}
+                    <br>
+                    <br>
+                {% endfor %}
+            </p>
+        </div>
     </div>
 </div>
 {% endblock %}

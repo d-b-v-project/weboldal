@@ -3,42 +3,48 @@
 {% block szentiras_a%}class="active"{% endblock %}
 {% block content %}
 
-{% block style %}
-<link rel="stylesheet" href="../static/style.css">
-<link rel="stylesheet" href="../static/imatkozas.css">{% endblock %}
-<div class="doboz">
-    <div class="header">
-        <h1 class="ttcim">Imádkozás</h1>
+
+
+<div class="container my-4">
+    <div class="row">
+        <audio autoplay controls id="music" class="mx-auto p-2">
+            <source src="{{ url_for('static', filename='ervinizmus.mp3') }}" type="audio/mpeg">
+        </audio>
     </div>
-    <div class="szoveg">
-        <p class="center">
-            <audio autoplay controls id="music">
-                <source src="{{ url_for('static', filename='ervinizmus.mp3') }}" type="audio/mpeg">
-            </audio>
-            {% for resz in minden[0] %}
-                <div class="box">
-                    {{ resz }}
-                    <br>
-                    <br>
+
+</div>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col">
+            <div class="card mb-3" >
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="./../static/Images/Lord_ervin.png" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Miatyánk</h5>
+                            <p class="card-text">{% for resz in minden[0] %} {{ resz }} {% endfor %}</p>
+                            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
                 </div>
-                
-            {% endfor %}
-            <div class="kep">
-                <img src="./../static/Images/Lord_ervin.png" alt="">
             </div>
-        </p>
+        </div>
     </div>
 </div>
+
 <script>
     function PlayMusic() {
-    
-      var play=document.getElementById("music");
-      play.play();
+
+        var play = document.getElementById("music");
+        play.play();
     }
-    
-    $(document).ready(function(){
-      setTimeout(PlayMusic,3000);
+
+    $(document).ready(function () {
+        setTimeout(PlayMusic, 3000);
     })
-        
+
 </script>
 {% endblock %}

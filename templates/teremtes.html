@@ -1,9 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Ervinizmus - Teremtéstörténet{% endblock %}
 {% block teremtestortenet_a %} class="active" {% endblock %}
-{% block style %}
-<link rel="stylesheet" href="../static/style.css">
-<link rel="stylesheet" href="../static/teremtes.css">{% endblock %}
+
 {% block content %}
 <div class="doboz">
     <div class="header">
@@ -11,14 +9,21 @@
     </div>
     <div class="szoveg">
         <p class="center">
-
-            {% for sor in teremtes_tortenet_sorok %}
-        <div class="box">
-            {{sor}}
-        </div>
+        {% for i in range(len_teremtes) %}
+            <div class="container my-4">
+                <div class="col center" align="center">
+                    <div class="card text-bg-secondary mb-0" style="max-width: 40rem;">
+                        <div class="card-header" align="center">{{ i+1 }}</div>
+                        <div class="card-body">
+                            <h5 class="card-title" align="left">{{ i+1 }}. nap</h5>
+                            <p class="card-text" align="left">{{ teremtes_tortenet_sorok[i] }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
 
-        </p>
+            </p>
+        </div>
     </div>
-</div>
-{% endblock %}
+    {% endblock %}
