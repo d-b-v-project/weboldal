@@ -22,6 +22,8 @@ SECRET_KEY = 'development'
 
 @hivo.route("/login_page")
 def login_page():
+    if "hivo" in session:
+        return redirect(url_for("hivo.dashboard"))
     return render_template("hivo/login.html")
 
 
@@ -71,10 +73,25 @@ def dashboard():
         return redirect(url_for("index"))
     con = init_db()
     cur = con.cursor()
+    cur.execute(f"SELECT * FROM messages")
+    minden = cur.fetchall()
     cur.execute(f"SELECT in_one FROM messages")
     in_one = cur.fetchall()
     
-    return render_template("hivo/dashboard.html", in_one=in_one)
+    rendes = {}
+    count = 0
+    
+    
+    print(in_one[0][count])
+    for message in minden:
+        sender = message[0]
+        message_text = message[1]
+        send_date = message[2]
+        rendes[in_one[count][0]] = [sender, message_text, send_date]
+        count += 1
+    print(rendes)
+    
+    return render_template("hivo/dashboard.html", in_one=in_one, hivo_nev=session["hivo"], minden=minden, rendes=rendes)
 
 
 
@@ -105,3 +122,8 @@ def send_message():
     date = now.strftime("%Y.%m.%d, %H:%M:%S")
     #logged_in_user = session["user"]
     return redirect(url_for("hivo.dashboard"))
+
+@hivo.route("/log_out")
+def hivo_log_out():
+    session.pop("hivo", None)
+    return redirect(url_for("index"))

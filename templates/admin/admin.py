@@ -241,6 +241,9 @@ def change_password():
 
 @admin_pg.route("/del_msg/<minden>")
 def del_msg(minden):
+    if "user" not in session:
+        flash("Először jelentkezz be!", "error")
+        return redirect(url_for("index"))
     con = init_db()
     cur = con.cursor()
     print(minden)

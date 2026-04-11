@@ -1,36 +1,60 @@
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="static/Images/webicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Ervinizmus{% endblock %}</title>
-    {% block style %} <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}"> {% endblock %}
-    {% block js %}
-        <script src="{{ url_for('static', filename='main.js') }}"></script>
-        <script src="{{ url_for('static', filename='admin.js') }}"></script>
-    {% endblock %}
+    <!--
+    {% block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> {% endblock %}
+    {% block js %} <script src="{{ url_for('static', filename='main.js') }}"></script> {% endblock %}-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+
+
+
 </head>
 <!--
     EBBE A FILE-BA NE NYÚLJ BELE!   
 -->
+
 <body>
-    <div class="topnav" id="myTopnav">
-        <a href="/admin/dashboard" {% block index_a%} class="deactive" {% endblock %}>Főoldal</a>
-        <a href="/admin/szoveg_szerkesztes_page" {% block szoveg_szerkesztes%} class="deactive" {% endblock %}>Szövegek szerkesztése</a>
-        <a href="/admin/short_url_page" {% block teremtestortenet_a%} class="deactive" {% endblock %}>Rövid url-ek</a>
-        <a href="/admin/hivo_edit_page" {% block zarandokhely_a%} class="deactive" {% endblock %}>Hívők</a>
-        <a href="/admin/change_data" class="deactive">Adatok megváltoztatása</a>
-        <!--<a href="/hivovevalas" {% block hivovevalas_a%} class="deactive" {% endblock %}>Hívő leszek</a>-->
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-          <i class="fa fa-bars"></i>
-          <p class="navbar_line"></p>
-          <p class="navbar_line"></p>
-          <p class="navbar_line"></p>
-        </a>
-    </div>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/admin/dashboard">Ervinizmus</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/admin/szoveg_szerkesztes_page"><i class="bi bi-share-fill me-1"></i>Szövegek szerkesztése</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/short_url_page"><i class="bi bi-globe me-1"></i>Rövid url-ek</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/hivo_edit_page"><i class="bi bi-info-circle-fill me-1"></i>Hívők</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/change_data"><i class="bi bi-signpost-split-fill me-1"></i>Adatok megváltoztatása</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     {% block content %}
-    
+
     {% endblock %}
 </body>
+
 </html>

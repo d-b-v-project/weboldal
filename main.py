@@ -169,12 +169,16 @@ def teremtes_tortenet():
     
     cur.execute("SELECT teremtes FROM public.szovegek;")
     teremtes_tortenet_szoveg = cur.fetchall()[0][0]
-    teremtes_tortenet_sorok = str(teremtes_tortenet_szoveg).split("\n")
+    teremtes_tortenet_sorok_temp = str(teremtes_tortenet_szoveg).split("\n")
+    teremtes_tortenet_sorok = []
+    for i in teremtes_tortenet_sorok_temp:
+        if i != "\r":
+            teremtes_tortenet_sorok.append(i)
 
     
     
     
-    return render_template("teremtes.html", teremtes_tortenet_sorok=teremtes_tortenet_sorok)
+    return render_template("teremtes.html", teremtes_tortenet_sorok=teremtes_tortenet_sorok, len_teremtes=len(teremtes_tortenet_sorok))
 
 @app.route("/zarandokhely")
 def zarandokhely():
@@ -204,7 +208,10 @@ def hivove_valas_submit():
         name_in_html = request.form["name"]
         email_in_html = request.form["email"]
         password_in_html = request.form["password"]
-        
+        print(osztaly)
+        print(os)
+        print(name_in_html)
+        print(email_in_html)
     except:
         flash("Minden mezőt tölts ki!")
         return redirect(url_for("hivovevalas"))

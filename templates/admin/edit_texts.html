@@ -4,49 +4,56 @@
 
 {% block content %}
 <div class="teremtes">
-    <a href="/admin/szoveg_szerkesztes_page#teremtes">Teremtés</a>
-    <a href="/admin/szoveg_szerkesztes_page#fo_oldal">Fő oldal</a>
-    <a href="/admin/szoveg_szerkesztes_page#miatyank">Miatyánk</a>
-    <a href="/admin/szoveg_szerkesztes_page#tiz_parancsolat">10 parancsolat</a>
-    <a href="/admin/szoveg_szerkesztes_page#keletkezes">Keletkezés</a>
-    <form action="/admin/edit_text" action="/admin/test" method="post">
-        
-        <div id="teremtes">
-            <h3>Teremtés:</h3>
-            <textarea type="text" name="teremtes">{{ teremtes }}</textarea>
-        </div>
-        <hr>
-        <div id="fo_oldal">
-            <h3>Fő oldal</h3>
-            <textarea type="text" name="fo_oldal">{{ fo_oldal }}</textarea>
-        </div>
-        <hr>
-        <div id="miatyank">
-            <h3>Miatyánk</h3>
-            <textarea type="text" name="miatyank">{{ miatyank }}</textarea>
-        </div>
-        <hr>
-        <div id="tiz_parancsolat">
-            <h3>10 parancsolat</h3>
-            <textarea type="text" name="tiz_parancsolat">{{ tiz_parancsolat }}</textarea>
-        </div>
-        <hr>
-        <div id="keletkezes">
-            <h3>Keletkezés</h3>
-            <textarea type="text" name="keletkezes">{{ keletkezes }}</textarea>
-        </div>
-        <button>szerkesztése</button>
-        
-    </form>
-    
-    <form action="/admin/eredeti">
-        <button>Eredeti szöveg visszaállítása</button>
-    </form>
-    <form action="/admin/add_eredeti">
-        <button  style="background-color: red;" title="Ez a gomb a jelenlegi módosított szöveget alapértelmezettre állítja!">Legyen eredeti.</button>
-    </form>
-    
-</div>
-<a href="/admin/log_out">Kijelentkezés</a>
 
-{% endblock %}
+    <form action="/admin/edit_text" action="/admin/test" method="post">
+        <div class="container-xl">
+            <a href="/admin/szoveg_szerkesztes_page#teremtes" class="btn btn-link">Teremtés</a>
+            <a href="/admin/szoveg_szerkesztes_page#fo_oldal" class="btn btn-link">Fő oldal</a>
+            <a href="/admin/szoveg_szerkesztes_page#miatyank" class="btn btn-link">Miatyánk</a>
+            <a href="/admin/szoveg_szerkesztes_page#tiz_parancsolat" class="btn btn-link">10 parancsolat</a>
+            <a href="/admin/szoveg_szerkesztes_page#keletkezes" class="btn btn-link">Keletkezés</a>
+            <div id="teremtes">
+                <h3>Teremtés:</h3>
+                <textarea type="text" name="teremtes" class="form-control"
+                    style="max-height: 600px; min-height: 200px;">{{ teremtes }}</textarea>
+            </div>
+            <hr>
+            <div id="fo_oldal">
+                <h3>Fő oldal</h3>
+                <textarea type="text" name="fo_oldal" class="form-control"
+                    style="max-height: 600px; min-height: 200px;">{{ fo_oldal }}</textarea>
+            </div>
+            <hr>
+            <div id="miatyank">
+                <h3>Miatyánk</h3>
+                <textarea type="text" name="miatyank" class="form-control"
+                    style="max-height: 600px; min-height: 200px;">{{ miatyank }}</textarea>
+            </div>
+            <hr>
+            <div id="tiz_parancsolat">
+                <h3>10 parancsolat</h3>
+                <textarea type="text" name="tiz_parancsolat" class="form-control"
+                    style="max-height: 600px; min-height: 200px;">{{ tiz_parancsolat }}</textarea>
+            </div>
+            <hr>
+            <div id="keletkezes">
+                <h3>Keletkezés</h3>
+                <textarea type="text" name="keletkezes" class="form-control"
+                    style="max-height: 600px; min-height: 200px;">{{ keletkezes }}</textarea>
+            </div>
+            <button class="btn btn-success">Szerkesztés</button>
+        </div>
+    </form>
+    <div class="container-xl">
+        <form action="/admin/eredeti">
+            <button class="btn btn-secondary m-1">Eredeti szöveg visszaállítása</button>
+        </form>
+        <form action="/admin/add_eredeti">
+            <button class="btn btn-danger m-1"
+                title="Ez a gomb a jelenlegi módosított szöveget alapértelmezettre állítja!">Legyen eredeti.</button>
+        </form>
+
+    </div>
+    <a href="/admin/log_out">Kijelentkezés</a>
+
+    {% endblock %}
