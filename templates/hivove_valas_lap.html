@@ -10,131 +10,146 @@
         document.getElementById("kuldes").submit();
     }
 </script>
-
-
-
-<div class="container-md bg-info-subtle">
-    <center>
-        <h1>Regisztráció</h1>
-    </center>
-
-
-    <div class="row">
-        <div class="input-group flex-nowrap mb-3">
-            <span class="input-group-text" id="addon-wrapping">@</span>
-            <input type="text" class="form-control" placeholder="Felhasználónév" aria-label="Felhasználónév"
-                aria-describedby="addon-wrapping" name="name">
-        </div>
-    </div>
-    <div class="row">
-        <div class="input-group flex-nowrap mb-3">
-            <span class="input-group-text" id="addon-wrapping">@</span>
-            <input type="text" class="form-control" placeholder="Email" aria-label="Email"
-                aria-describedby="addon-wrapping" name="email">
-        </div>
-    </div>
-    <div class="row">
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">Jelszó</span>
-            <input type="password" class="form-control" aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-default" name="password">
-        </div>
-    </div>
-</div>
-
-
-<div class="container-md bg-info-subtle">
-    <div class="row">
-        <div class="form-check ml-5">
-            <input class="form-check-input" type="radio" name="os" id="radioDefault1" value="windows">
-            <label class="form-check-label" for="radioDefault1">
-                Windows
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="os" id="radioDefault2" checked value="linux">
-            <label class="form-check-label" for="radioDefault2">
-                Linux
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="os" id="radioDefault3" value="mac">
-            <label class="form-check-label" for="radioDefault3">
-                Mac
-            </label>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-<div class="minden">
-    <center>
-        <h1>Regisztráció</h1>
-    </center>
-    <form action="/hivove_valas_submit" method="post" id="kuldes">
-        <div class="al_minden inp_div">
-            <label>
-                <input type="text" name="name" placeholder="Felhasználónév" class="inp_field"><br>
-                <input type="email" name="email" id="" placeholder="Email cím" class="inp_field"><br>
-                <input type="password" name="password" placeholder="Jelszó" id="" class="inp_field">
-            </label><br><br>
-
-        </div>
-        <div class="question al_minden">
-            <label for="">Válaszd ki hogy milyen operációs renszert használsz: </label><br>
-            <label>
-                <input type="radio" name="os" value="windows" class="inp_radio"> windows
-            </label><br>
-            <label>
-                <input type="radio" name="os" value="linux" class="inp_radio"> linux
-            </label><br>
-            <label>
-                <input type="radio" name="os" value="mac" class="inp_radio"> mac
-            </label><br>
-        </div><br>
-        <div class="question al_minden">
-            <label for="">Osztályod:</label><br>
-            <label>
-                <input type="radio" name="class" value="9" class="inp_radio"> 9
-            </label><br>
-            <label>
-                <input type="radio" name="class" value="10" class="inp_radio"> 10
-            </label><br>
-            <label>
-                <input type="radio" name="class" value="11" class="inp_radio"> 11
-            </label><br>
-            <label>
-                <input type="radio" name="class" value="12" class="inp_radio"> 12
-            </label><br>
-            <label>
-                <input type="radio" name="class" value="13" class="inp_radio"> 13
-            </label><br>
-            <label>
-                <input type="radio" name="class" value="0" class="inp_radio"> Nem adom meg!
-            </label><br>
-        </div>
+<div class="container">
+    <div class="bg-danger p-0 rounded-4">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
         <div>
-            <label for=""><input type="checkbox" name="hozzajarulas" id="">Elolvastam és hozzájárulok a <a href="/info"
-                    target="_blank">felhasználási feltételekben</a> foglaltakhoz</label> <br>
-            <label for=""><input type="checkbox" name="hozzajarulas" id="">Elolvastam és egyetértek a <a
-                    href="/tiz_parancsolat" target="_blank">tíz parancsolattal</a></label>
-
+            {% for category, message in messages %}
+            <p class="{{ category }}">{{ message }}</p>
+            {% endfor %}
         </div>
-        <button class="g-recaptcha" data-sitekey="{{ site_key }}" data-callback='onSubmit' data-action='submit'
-            type="submit">Regisztráció</button>
-    </form>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    <div>
-        {% for category, message in messages %}
-        <p class="{{ category }}">{{ message }}</p>
-        {% endfor %}
+        {% endif %}
+        {% endwith %}
     </div>
-    {% endif %}
-    {% endwith %}
+</div>
+
+<form action="/hivove_valas_submit" method="post" id="kuldes">
+    <div class="container-md bg-info-subtle rounded-4 mb-3">
+        <center>
+            <h1>Regisztráció</h1>
+        </center>
+        <h3 class="center">Saját adatok</h3>
+
+        <div class="row">
+            <div class="input-group flex-nowrap mb-3">
+                <span class="input-group-text" id="addon-wrapping">@</span>
+                <input type="text" class="form-control" placeholder="Felhasználónév" aria-label="Felhasználónév"
+                    aria-describedby="addon-wrapping" name="name">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-group flex-nowrap mb-3">
+                <span class="input-group-text" id="addon-wrapping">@</span>
+                <input type="email" class="form-control" placeholder="Email" aria-label="Email"
+                    aria-describedby="addon-wrapping" name="email">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Jelszó</span>
+                <input type="password" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" name="password">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-md bg-info-subtle rounded-4 mb-3 p-3">
+        <h3>Operációs rendszer</h3>
+        <p class="card-subtitle text-body-secondary">Válaszd ki milyen operációs rendszert használsz</p>
+        <div class="row">
+            <div class="form-check ml-5">
+                <input class="form-check-input" type="radio" name="os" id="radioDefault1" value="windows">
+                <label class="form-check-label" for="radioDefault1">
+                    Windows
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="os" id="radioDefault2" checked value="linux">
+                <label class="form-check-label" for="radioDefault2">
+                    Linux
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="os" id="radioDefault3" value="mac">
+                <label class="form-check-label" for="radioDefault3">
+                    Mac
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-md bg-info-subtle rounded-4 mb-3 p-3">
+        <h3>Osztály</h3>
+        <p class="card-subtitle text-body-secondary">Válaszd ki melyik osztályba jársz</p>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="class" value="9" id="radioDefault99">
+            <label class="form-check-label" for="radioDefault99">
+                9
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="class" value="10" id="radioDefault98" checked>
+            <label class="form-check-label" for="radioDefault98">
+                10
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="class" value="11" id="radioDefault97" checked>
+            <label class="form-check-label" for="radioDefault97">
+                11
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="class" value="12" id="radioDefault96" checked>
+            <label class="form-check-label" for="radioDefault96">
+                12
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="class" value="13" id="radioDefault95" checked>
+            <label class="form-check-label" for="radioDefault95">
+                13
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="class" value="0" id="radioDefault94" checked>
+            <label class="form-check-label" for="radioDefault4">
+                Nem adom meg
+            </label>
+        </div>
+    </div>
+
+    <div class="container-md bg-info-subtle rounded-0 mb-0 p-3">
+        <h3>Feltételek</h3>
+        <p class="card-subtitle text-body-secondary">Kötelező felhasználási feltételek</p>
+        <div class="row">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault"
+                    name="hozzajarulas">
+                <label class="form-check-label" for="switchCheckDefault">Elolvastam és hozzájárulok a <a href="/info"
+                        target="_blank">felhasználási feltételekben</a> foglaltakhoz</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault1"
+                    name="hozzajarulas">
+                <label class="form-check-label" for="switchCheckDefault1">Elolvastam és egyetértek a <a
+                        href="/tiz_parancsolat" target="_blank">tíz parancsolattal</a></label>
+            </div>
+        </div>
+    </div>
+    <div class="container-md bg-info-subtle rounded-4 rounded-top-0 mb-3 p-3">
+        <button class="g-recaptcha btn btn-primary" data-sitekey="{{ site_key }}" data-callback='onSubmit'
+            data-action='submit' type="submit">Regisztráció</button>
+    </div>
+</form>
+
+
+
+
+
+
 </div>
 
 {% endblock %}

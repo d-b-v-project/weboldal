@@ -1,19 +1,41 @@
 {% extends 'base.html' %}
 {% block title %}Ervinizmus - email megerősítés{% endblock %}
 {% block content %}
-<h1>E-mail elküldve!</h1>
-<form action="/email_verification" method="post">
-    <label for="">Írd be a kódot amit a megadott E-mail címre küldtük.</label><br>
-    <input type="text" placeholder="kód" id="" name="code_html">
-    <input type="submit" name="" id="">
-</form>
-{% with messages = get_flashed_messages(with_categories=true) %}
-{% if messages %}
-    <div>
-        {% for category, message in messages %}
+
+<div class="container">
+    <div class="bg-danger pl-3 rounded-4">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div>
+            {% for category, message in messages %}
             <p class="{{ category }}">{{ message }}</p>
-        {% endfor %}
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
     </div>
-{% endif %}
-{% endwith %}
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="card m-2" style="width: 18rem;">
+            <div class="card-body">
+                <form action="/email_verification" method="post">
+                    <h5 class="card-title">E-mail elküldve!</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Írd be a kódot amit a megadott E-mail címre
+                        küldtük.
+                    </h6>
+                    <p class="card-text"> <input type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-sm" placeholder="123456" name="code_html"></p>
+                    <input type="submit" name="" id="" class="btn btn-secondary">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 {% endblock %}

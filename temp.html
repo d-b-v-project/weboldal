@@ -1,0 +1,79 @@
+<div class="minden">
+    <center>
+        <h1>Regisztráció</h1>
+    </center>
+    <form action="/hivove_valas_submits" method="post" id="kuldes">
+        <div class="al_minden inp_div">
+            <label>
+                <input type="text" name="name" placeholder="Felhasználónév" class="inp_field"><br>
+                <input type="email" name="email" id="" placeholder="Email cím" class="inp_field"><br>
+                <input type="password" name="password" placeholder="Jelszó" id="" class="inp_field">
+            </label><br><br>
+
+        </div>
+        <div class="question al_minden">
+            <label for="">Válaszd ki hogy milyen operációs renszert használsz: </label><br>
+            <label>
+                <input type="radio" name="os" value="windows" class="inp_radio"> windows
+            </label><br>
+            <label>
+                <input type="radio" name="os" value="linux" class="inp_radio"> linux
+            </label><br>
+            <label>
+                <input type="radio" name="os" value="mac" class="inp_radio"> mac
+            </label><br>
+        </div><br>
+        <div class="question al_minden">
+            <label for="">Osztályod:</label><br>
+            <label>
+                <input type="radio" name="class" value="9" class="inp_radio"> 9
+            </label><br>
+            <label>
+                <input type="radio" name="class" value="10" class="inp_radio"> 10
+            </label><br>
+            <label>
+                <input type="radio" name="class" value="11" class="inp_radio"> 11
+            </label><br>
+            <label>
+                <input type="radio" name="class" value="12" class="inp_radio"> 12
+            </label><br>
+            <label>
+                <input type="radio" name="class" value="13" class="inp_radio"> 13
+            </label><br>
+            <label>
+                <input type="radio" name="class" value="0" class="inp_radio"> Nem adom meg!
+            </label><br>
+        </div>
+        <div>
+            <label for=""><input type="checkbox" name="hozzajarulas" id="">Elolvastam és hozzájárulok a <a href="/info"
+                    target="_blank">felhasználási feltételekben</a> foglaltakhoz</label> <br>
+            <label for=""><input type="checkbox" name="hozzajarulas" id="">Elolvastam és egyetértek a <a
+                    href="/tiz_parancsolat" target="_blank">tíz parancsolattal</a></label>
+
+        </div>
+        <button class="g-recaptcha" data-sitekey="{{ site_key }}" data-callback='onSubmit' data-action='submit'
+            type="submit">Regisztráció</button>
+    </form>
+
+
+
+
+
+
+
+
+    <h1>E-mail elküldve!</h1>
+    <form action="/email_verification" method="post">
+        <label for="">Írd be a kódot amit a megadott E-mail címre küldtük.</label><br>
+        <input type="text" placeholder="kód" id="" name="code_html">
+        <input type="submit" name="" id="">
+    </form>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div>
+        {% for category, message in messages %}
+        <p class="{{ category }}">{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}

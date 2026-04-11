@@ -74,7 +74,7 @@ def dashboard():
     cur.execute(f"SELECT in_one FROM messages")
     in_one = cur.fetchall()
     
-    return render_template("hivo/dashboard.html", in_one=in_one)
+    return render_template("hivo/dashboard.html", in_one=in_one, hivo_nev=session["hivo"])
 
 
 

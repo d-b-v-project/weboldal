@@ -208,7 +208,10 @@ def hivove_valas_submit():
         name_in_html = request.form["name"]
         email_in_html = request.form["email"]
         password_in_html = request.form["password"]
-        
+        print(osztaly)
+        print(os)
+        print(name_in_html)
+        print(email_in_html)
     except:
         flash("Minden mezőt tölts ki!")
         return redirect(url_for("hivovevalas"))
