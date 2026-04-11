@@ -42,7 +42,7 @@
                     <p class="ml-2" style="margin-left: 10px; width: fit-content; margin-bottom: -10px;">
                     <h5>{{ minden[1] }}</h5>
                     </p>
-                    <div class="float-md-end" style="display: flex; flex-direction: column; margin-top: -40px;">
+                    <div class="float-md-end" style="display: flex; flex-direction: column;">
                         <p style="align-self: flex-end;">{{ minden[2] }}</p>
                     </div> <br>
                 </div>
@@ -56,7 +56,7 @@
                     <h6>{{ minden[1] }}</h6>
                     </p>
                     <div class="float-md-end"
-                        style="display: flex; flex-direction: column; margin-top: -40px; margin-bottom: -50px;">
+                        style="display: flex; flex-direction: column;  margin-bottom: -50px;">
                         <p style="align-self: flex-end;">{{ minden[2] }}</p>
                     </div> <br>
                 </div>
@@ -65,12 +65,18 @@
             </div>
         </ul>
         <form action="/hivo/send_message" method="post">
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Üzenet</span>
-                <input type="text" class="form-control" placeholder="" aria-label="Username"
-                    aria-describedby="basic-addon1" name="message">
+            <div class="row">
+                <div class="col-9">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Üzenet</span>
+                        <input type="text" class="form-control" placeholder="" aria-label="Username"
+                            aria-describedby="basic-addon1" name="message">
+                    </div>
+                </div>
+                <div class="col-1"><button class="btn btn-secondary">Küldés</button></div>
             </div>
-            <button class="btn btn-secondary">Küldés</button>
+
+            
         </form>
     </div>
     {% with messages = get_flashed_messages(with_categories=true) %}
