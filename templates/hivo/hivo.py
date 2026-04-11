@@ -22,6 +22,8 @@ SECRET_KEY = 'development'
 
 @hivo.route("/login_page")
 def login_page():
+    if "hivo" in session:
+        return redirect(url_for("hivo.dashboard"))
     return render_template("hivo/login.html")
 
 
@@ -105,3 +107,8 @@ def send_message():
     date = now.strftime("%Y.%m.%d, %H:%M:%S")
     #logged_in_user = session["user"]
     return redirect(url_for("hivo.dashboard"))
+
+@hivo.route("/log_out")
+def hivo_log_out():
+    session.pop("hivo", None)
+    return redirect(url_for("index"))

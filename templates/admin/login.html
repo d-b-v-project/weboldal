@@ -1,42 +1,53 @@
-    {% extends 'admin_base.html' %}
-    {% block title %}Ervinizmus - Bejelentkezés{% endblock %}
-    {% block hivovevalas_a%}{% endblock %}
-    {% block style %} <link rel="stylesheet" href="../../static/login.css"> {% endblock %}
-    {% block bejelentkezes_a %} class="active"{% endblock %}
-    <link rel="stylesheet" href="../../static/style.css">
-    {% block content %}
+{% extends 'admin_base.html' %}
+{% block title %}Ervinizmus - Bejelentkezés{% endblock %}
+{% block hivovevalas_a%}{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="../../static/login.css"> {% endblock %}
+{% block bejelentkezes_a %} class="active"{% endblock %}
+<link rel="stylesheet" href="../../static/style.css">
+{% block content %}
 
-    <div class="kozep">
-    <form method="post" action="/admin/login">
-        <div class="login" id="login">
-            
-            <h1>Bejelentkezés: Admin</h1>
-            <input type="text" name="username" placeholder="Felhasználónév" required><br>
-            <input type="password" name="password" placeholder="Jelszó" required><br>
-            <button type="submit">Bejelentkezés</button>
-            <br>
-            <br>
-            <button onclick="location.href='/hivo/login_page'">Hívő vagyok</button>
-            <br>
-            <br>
-            <button onClick="javascript:window.open('https://webmail.oregpreshaz.eu/', '_blank');" type="button">Email Bejelentkezés</button>
-            <br>
-            <br>
-            <button onclick="location.href='/'" type="button">Vissza</button>
-                
-        </div>
-    </form>
-    </div>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
+<div class="container">
+    <div class="bg-danger pl-3 rounded-4">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
         <div>
             {% for category, message in messages %}
-                <p class="{{ category }}">{{ message }}</p>
+            <p class="{{ category }}">{{ message }}</p>
             {% endfor %}
         </div>
-    {% endif %}
-    {% endwith %}
+        {% endif %}
+        {% endwith %}
+    </div>
+</div>
+
+
+<div class="container-xxl mw-25">
+    <div class="row">
+        <h1>Admin bejelentkezés</h1>
+    </div>
+    <div class="row">
+        <form method="post" action="/admin/login">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Felhasználónév</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" name="username" required>
+                <div id="emailHelp" class="form-text">Soha nem fogjuj a személyes adataid kiadni.</div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Jelszó</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Bejelentkezés</button>
+            <button onclick="location.href='/hivo/login_page'" class="btn btn-secondary">Hívő vagyok</button>
+            <button onclick="location.href='/hivo/login_page'" class="btn btn-secondary">Email bejelentkezés</button>
+            <button onClick="javascript:window.open('https://webmail.oregpreshaz.eu/', '_blank');" type="button" class="btn btn-secondary">Vissza</button>
+        </form>
+    </div>
+</div>
 
 
 
-    {% endblock %}
+
+
+{% endblock %}

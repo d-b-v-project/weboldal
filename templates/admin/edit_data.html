@@ -4,6 +4,36 @@
 
 {% block content %}
 
+
+
+<div class="container-md">
+    <div class="row">
+        <div class="col">
+            <form action="/admin/change_name" method="post">
+                <h2>Felhasználónév megváltoztatása</h2>
+                <input type="text" class="form-control" placeholder="Új felhasználónév"
+                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="new_name">
+                <button class="btn btn-secondary">Módosítás</button>
+            </form>
+        </div>
+        <div class="col">
+            <form action="/admin/change_password" method="post">
+                <h2>Felhasználónév megváltoztatása</h2>
+                <input type="password" class="form-control" placeholder="Régi jelszó" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" name="old_password">
+                <input type="password" class="form-control" placeholder="Új jelszó" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" name="new_password">
+                <button class="btn btn-secondary">Módosítás</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
 <body>
     <h1>Felhasználónév megváltoztatása</h1>
     <form action="/admin/change_name" method="post">
@@ -17,7 +47,7 @@
         <input type="submit" value="Módosítás">
     </form>
     {{ error_message }}
-    
+
 </body>
 
 {% endblock %}
