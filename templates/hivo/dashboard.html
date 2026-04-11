@@ -11,24 +11,75 @@
 <div class="minden">
     <space style="width: 20px;"></space>
 
-    <div id="chat-box" class="chat-box">
-        <center><h1>Beszélgetés</h1></center>
-        <ul class="messages" id="messages">
-            
-            {% for item in in_one %}
-                <div class="msg">{{ item[0] }}</div>
-            {% endfor %}
-            
+    <div id="chat-box" class="container-xl">
+        <center>
+            <h1>Beszélgetés</h1>
+        </center>
+        <style>
+            .messages {
+                height: 400px;
+                overflow-y: scroll;
+            }
+        </style>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const scrollDiv = document.getElementById('msgs');
+                if (scrollDiv) {
+                    scrollDiv.scrollTop = scrollDiv.scrollHeight;
+                }
+            });
+        </script>
+
+
+        <ul class="messages" id="msgs">
+            <div class="message">
+                {% for in_one, minden in rendes.items() %}
+                {% if minden[0] == "Dani" %}
+                <div class="row bg-body-secondary m-1 rounded-2">
+                    <b><i style="color: darkorange;">
+                            <h4>{{ minden[0] }}</h4>
+                        </i></b>
+                    <p class="ml-2" style="margin-left: 10px; width: fit-content; margin-bottom: -10px;">
+                    <h5>{{ minden[1] }}</h5>
+                    </p>
+                    <div class="float-md-end" style="display: flex; flex-direction: column; margin-top: -40px;">
+                        <p style="align-self: flex-end;">{{ minden[2] }}</p>
+                    </div> <br>
+                </div>
+
+                {% else %}
+                <div class="row bg-body-secondary m-1 rounded-2">
+                    <b>
+                        <h4>{{ minden[0] }}</h4>
+                    </b>
+                    <p class="pl-2" style="margin-left: 20px; width: fit-content; margin-bottom: -10px;">
+                    <h6>{{ minden[1] }}</h6>
+                    </p>
+                    <div class="float-md-end"
+                        style="display: flex; flex-direction: column; margin-top: -40px; margin-bottom: -50px;">
+                        <p style="align-self: flex-end;">{{ minden[2] }}</p>
+                    </div> <br>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
         </ul>
-        <form action="/hivo/send_message" method="post"><center class="user_form lent"><input type="text" placeholder="Üzenet" name="message" class="send_message_field"> <button class="admin_button">Küldés</button></center></form>
+        <form action="/hivo/send_message" method="post">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Üzenet</span>
+                <input type="text" class="form-control" placeholder="" aria-label="Username"
+                    aria-describedby="basic-addon1" name="message">
+            </div>
+            <button class="btn btn-secondary">Küldés</button>
+        </form>
     </div>
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
-        <div>
-            {% for category, message in messages %}
-                <p class="{{ category }}">{{ message }}</p>
-            {% endfor %}
-        </div>
+    <div>
+        {% for category, message in messages %}
+        <p class="{{ category }}">{{ message }}</p>
+        {% endfor %}
+    </div>
     {% endif %}
     {% endwith %}
 </div>

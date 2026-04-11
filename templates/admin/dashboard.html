@@ -7,20 +7,62 @@
 <h1>Bejelentkezett: {{ user }} (Admin)!</h1>
 
 
+
 <div class="minden">
     <space style="width: 20px;"></space>
 
-    <div class="chat" id="chat-box" class="chat-box">
-        <center><h1>Beszélgetés</h1></center>
-        <ul class="messages">
-            
-            <div class="message" id="msg-box">
+    <div class="container-xl" id="chat-box" class="chat-box">
+        <center>
+            <h1>Beszélgetés</h1>
+        </center>
+
+
+        <style>
+            .messages {
+                height: 400px;
+                overflow-y: scroll;
+            }
+        </style>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const scrollDiv = document.getElementById('msgs');
+                if (scrollDiv) {
+                    scrollDiv.scrollTop = scrollDiv.scrollHeight;
+                }
+            });
+        </script>
+
+
+        <ul class="messages" id="msgs">
+            <div class="message">
                 {% for in_one, minden in rendes.items() %}
-                    {{ minden[0] }}: {{ minden[1] }} | {{ minden[2] }} ||| <a href="/admin/del_msg/{{ in_one }}" style="color: red;">Törlés</a> <br>
+                {% if minden[0] == "Dani" %}
+                <div class="row bg-body-secondary m-1 rounded-2">
+                    <b><i style="color: darkorange;">{{ minden[0] }}</i></b>
+                    <p class="ml-2" style="margin-left: 10px; width: fit-content;">{{ minden[1] }}</p>
+                    <div class="float-md-end" style="display: flex; flex-direction: column; margin-top: -50px;"><p style="align-self: flex-end;">{{ minden[2] }}</p></div> <br>
+                    <a href="/admin/del_msg/{{ in_one }}" style="color: red; margin-top: -30px;">Törlés</a>
+                </div>
+                
+                {% else %}
+                <div class="row bg-body-secondary m-1 rounded-2">
+                    <b>{{ minden[0] }}</b>
+                    <p class="pl-2" style="margin-left: 10px; width: fit-content;">{{ minden[1] }}</p>
+                    <div class="float-md-end" style="display: flex; flex-direction: column; margin-top: -50px;"><p style="align-self: flex-end;">{{ minden[2] }}</p></div> <br>
+                    <a href="/admin/del_msg/{{ in_one }}" style="color: red; margin-top: -30px;">Törlés</a>
+                </div>
+                {% endif %}
                 {% endfor %}
             </div>
         </ul>
-        <form action="/admin/send_message" method="post"><center class="user_form lent"><input type="text" placeholder="Üzenet" name="message"> <button class="admin_button">Küldés</button></center></form>
+        <form action="/admin/send_message" method="post">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Üzenet:</span>
+                <input type="text" class="form-control" placeholder="" aria-label="Username"
+                    aria-describedby="basic-addon1" name="message">
+            </div>
+            <button class="btn btn-secondary">Küldés</button>
+        </form>
     </div>
 </div>
 

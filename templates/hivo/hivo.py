@@ -73,10 +73,25 @@ def dashboard():
         return redirect(url_for("index"))
     con = init_db()
     cur = con.cursor()
+    cur.execute(f"SELECT * FROM messages")
+    minden = cur.fetchall()
     cur.execute(f"SELECT in_one FROM messages")
     in_one = cur.fetchall()
     
-    return render_template("hivo/dashboard.html", in_one=in_one, hivo_nev=session["hivo"])
+    rendes = {}
+    count = 0
+    
+    
+    print(in_one[0][count])
+    for message in minden:
+        sender = message[0]
+        message_text = message[1]
+        send_date = message[2]
+        rendes[in_one[count][0]] = [sender, message_text, send_date]
+        count += 1
+    print(rendes)
+    
+    return render_template("hivo/dashboard.html", in_one=in_one, hivo_nev=session["hivo"], minden=minden, rendes=rendes)
 
 
 

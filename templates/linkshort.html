@@ -10,41 +10,58 @@
 
 </head>
 
+
+
+<div class="container">
+    <div class="row">
+        <h2>Egyszerű linkrövidítő</h2>
+        <form action="/linkshorter" method="POST">
+            <div class="col m-1">
+                <input type="text" class="form-control" aria-label="Username"
+                    aria-describedby="basic-addon1" name="url" placeholder="Illeszd be az URL-t" required>
+            </div>
+            <div class="col m-1">
+                <input type="text" class="form-control" aria-label="Username"
+                    aria-describedby="basic-addon1" name="short_url" id="short_url" placeholder="Rövidített név"
+                    required>
+            </div>
+            <button type="submit" onclick="short_it()" class="btn btn-primary">Rövidítés</button>
+        </form>
+    </div>
+</div>
+
+
+
+
 <body>
     <div class="body">
-    <h1>Egyszerű Link Rövidítő</h1>
 
-    <form  action="/linkshorter" method="POST">
-        <input type="url" name="url" placeholder="Illeszd be az URL-t" required>
-        <input type="" name="short_url" id="short_url" placeholder="Rövidített név" required>
-        <button type="submit" onclick="short_it()">Rövidítés</button>
-    </form>
-
-    {% if short_url %}
-    <p>
-        <strong>Rövidített URL:</strong>
-        <a href="{{ short_url }}" target="_blank" class="link" id="link">{{ short_url }}</a>
-        <center>
-            <button class="element-button" style="vertical-align:middle" onclick="element()">Nagyítás</button>
-            <button class="element-button-del" style="vertical-align:middle" onclick="element_del()">Kicsinyítés</button>
-        </center>
-    </p>
-    {% endif %}
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    <div>
-        {% for category, message in messages %}
-        <p class="{{ category }}">{{ message }}</p>
-        {% endfor %}
-    </div>
-    {% endif %}
-    {% endwith %}
-    <br>
+        {% if short_url %}
+        <p>
+            <strong>Rövidített URL:</strong>
+            <a href="{{ short_url }}" target="_blank" class="link" id="link">{{ short_url }}</a>
+            <center>
+                <button class="element-button btn btn-secondary" style="vertical-align:middle" onclick="element()">Nagyítás</button>
+                <button class="element-button-del btn btn-secondary" style="vertical-align:middle"
+                    onclick="element_del()">Kicsinyítés</button>
+            </center>
+        </p>
+        {% endif %}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div>
+            {% for category, message in messages %}
+            <p class="{{ category }}">{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+        <br>
     </div>
 </body>
 
 <script>
-    function element(){
+    function element() {
         const element_btn = document.getElementsByClassName('element-button')[0]
         const element_btn_del = document.getElementsByClassName('element-button-del')[0]
         element_btn.classList.toggle('active')
@@ -52,8 +69,8 @@
         var text = document.getElementById("link")
         text.style.fontSize = '100px'
     }
-    
-    function element_del(){
+
+    function element_del() {
         const element_btn = document.getElementsByClassName('element-button')[0]
         const element_btn_del = document.getElementsByClassName('element-button-del')[0]
         element_btn.classList.toggle('active')
